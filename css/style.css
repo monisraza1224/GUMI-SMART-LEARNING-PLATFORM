@@ -1,4 +1,47 @@
-/* Reset and Base Styles */
+/* ==================== */
+/* CRITICAL MOBILE FIXES */
+/* ==================== */
+
+/* Prevent horizontal scrolling and ensure mobile compatibility */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+    position: relative;
+}
+
+/* Force all images and media to be responsive */
+img, video, iframe, canvas, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Ensure all containers don't exceed screen width */
+.container, .navbar, section, div, header, footer {
+    max-width: 100vw;
+}
+
+/* Fix for mobile touch targets */
+button, .btn, a, input, select, textarea {
+    min-height: 44px; /* Apple's recommended minimum touch target */
+    font-size: 16px; /* Prevents iOS zoom on focus */
+}
+
+/* Remove blue highlight on mobile taps */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Improve text readability on mobile */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* ==================== */
+/* EXISTING MEDIA QUERIES */
+/* ==================== *//* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
