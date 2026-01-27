@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Gumi Smart Learning</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ko">한국어</button>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <span class="lang-en">Gumi Smart Learning</span>
+                    <span class="lang-ko" style="display:none;">구미 스마트 학습</span>
+                </div>
+                <h1 class="lang-en">Create Account</h1>
+                <h1 class="lang-ko" style="display:none;">계정 생성</h1>
+                <p class="lang-en">Join our smart learning community</p>
+                <p class="lang-ko" style="display:none;">스마트 학습 커뮤니티에 가입하세요</p>
+            </div>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="name" class="lang-en">Full Name</label>
+                    <label for="name" class="lang-ko" style="display:none;">전체 이름</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="lang-en">Email Address</label>
+                    <label for="email" class="lang-ko" style="display:none;">이메일 주소</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="lang-en">Password</label>
+                    <label for="password" class="lang-ko" style="display:none;">비밀번호</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword" class="lang-en">Confirm Password</label>
+                    <label for="confirmPassword" class="lang-ko" style="display:none;">비밀번호 확인</label>
+                    <input type="password" id="confirmPassword" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentType" class="lang-en">Student Type</label>
+                    <label for="studentType" class="lang-ko" style="display:none;">학생 유형</label>
+                    <select id="studentType" class="form-select" required>
+                        <option value="general">
+                            <span class="lang-en">General Student</span>
+                            <span class="lang-ko" style="display:none;">일반 학생</span>
+                        </option>
+                        <option value="advanced">
+                            <span class="lang-en">Advanced Student</span>
+                            <span class="lang-ko" style="display:none;">고급 학생</span>
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="language" class="lang-en">Preferred Language</label>
+                    <label for="language" class="lang-ko" style="display:none;">선호 언어</label>
+                    <select id="language" class="form-select" required>
+                        <option value="en">English</option>
+                        <option value="ko">한국어</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <span class="lang-en">Create Account</span>
+                    <span class="lang-ko" style="display:none;">계정 생성하기</span>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p class="lang-en">Already have an account? <a href="login.html">Login</a></p>
+                <p class="lang-ko" style="display:none;">이미 계정이 있으신가요? <a href="login.html">로그인</a></p>
+                <p><a href="index.html" class="lang-en">Back to Home</a><a href="index.html" class="lang-ko" style="display:none;">홈으로 돌아가기</a></p>
+            </div>
+        </div>
+    </div>
+
+       <script src="js/api-loader.js"></script>
+<script src="js/ui-fixes.js"></script>
+<script src="js/quiz-fix.js"></script>
+<script src="js/main.js"></script>
+<script src="js/language.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/chatbot.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>

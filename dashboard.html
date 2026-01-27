@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Gumi Smart Learning</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ko">í•œêµ­ì–´</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <span class="lang-en">Gumi Smart Learning</span>
+                <span class="lang-ko" style="display:none;">êµ¬ë¯¸ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link lang-en">Home</a><a href="index.html" class="nav-link lang-ko" style="display:none;">í™ˆ</a></li>
+                <li><a href="subjects.html" class="nav-link lang-en">Subjects</a><a href="subjects.html" class="nav-link lang-ko" style="display:none;">ê³¼ëª©</a></li>
+                <li><a href="ai-course.html" class="nav-link lang-en">AI Course</a><a href="ai-course.html" class="nav-link lang-ko" style="display:none;">AI ì½”ìŠ¤</a></li>
+                <li>
+    <a href="#" class="nav-link quiz-generator-btn lang-en" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">Quiz Generator</a>
+    <a href="#" class="nav-link quiz-generator-btn lang-ko" style="display:none;" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">퀴즈 생성기</a>
+</li>
+                <li><a href="dashboard.html" class="nav-link active lang-en">Dashboard</a><a href="dashboard.html" class="nav-link active lang-ko" style="display:none;">ëŒ€ì‹œë³´ë“œ</a></li>
+                <li><a href="profile.html" class="nav-link lang-en">Profile</a><a href="profile.html" class="nav-link lang-ko" style="display:none;">í”„ë¡œí•„</a></li>
+                <li><button onclick="logout()" class="btn btn-outline lang-en">Logout</button><button onclick="logout()" class="btn btn-outline lang-ko" style="display:none;">ë¡œê·¸ì•„ì›ƒ</button></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <div class="welcome-message">
+                    <h1 class="lang-en">Welcome back, Student!</h1>
+                    <h1 class="lang-ko" style="display:none;">í™˜ì˜í•©ë‹ˆë‹¤, í•™ìƒë‹˜!</h1>
+                    <p class="lang-en">Continue your learning journey</p>
+                    <p class="lang-ko" style="display:none;">í•™ìŠµ ì—¬ì •ì„ ê³„ì†í•˜ì„¸ìš”</p>
+                </div>
+                <a href="profile.html" class="btn btn-outline lang-en">Profile Settings</a>
+                <a href="profile.html" class="btn btn-outline lang-ko" style="display:none;">í”„ë¡œí•„ ì„¤ì •</a>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="subjectsCount">0</div>
+                    <div class="stat-label lang-en">Subjects Started</div>
+                    <div class="stat-label lang-ko" style="display:none;">ì‹œìž‘í•œ ê³¼ëª©</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="courseProgress">0%</div>
+                    <div class="stat-label lang-en">AI Course Progress</div>
+                    <div class="stat-label lang-ko" style="display:none;">AI ì½”ìŠ¤ ì§„í–‰ë¥ </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="learningHours">0</div>
+                    <div class="stat-label lang-en">Learning Hours</div>
+                    <div class="stat-label lang-ko" style="display:none;">í•™ìŠµ ì‹œê°„</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="questionsSolved">0</div>
+                    <div class="stat-label lang-en">Questions Solved</div>
+                    <div class="stat-label lang-ko" style="display:none;">í•´ê²°í•œ ë¬¸ì œ</div>
+                </div>
+            </div>
+            
+            <h2 class="section-title lang-en">Quick Start Learning</h2>
+            <h2 class="section-title lang-ko" style="display:none;">ë¹ ë¥¸ í•™ìŠµ ì‹œìž‘</h2>
+            
+            <div class="subjects-grid" id="subjectsContainer">
+                <!-- Subjects will be loaded by JavaScript -->
+            </div>
+
+            <div style="margin-top: 60px;">
+                <h2 class="section-title lang-en">Recent Activity</h2>
+                <h2 class="section-title lang-ko" style="display:none;">ìµœê·¼ í™œë™</h2>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3 class="lang-en">Your Learning History</h3>
+                    <h3 class="lang-ko" style="display:none;">ë‹¹ì‹ ì˜ í•™ìŠµ ê¸°ë¡</h3>
+                    <p class="lang-en" id="recentActivity">No recent activity yet. Start learning!</p>
+                    <p class="lang-ko" style="display:none;" id="recentActivityKo">ì•„ì§ ìµœê·¼ í™œë™ì´ ì—†ìŠµë‹ˆë‹¤. í•™ìŠµì„ ì‹œìž‘í•˜ì„¸ìš”!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chatbot Widget -->
+    <div class="chatbot-widget">
+        <div class="chatbot-header">
+            <i class="fas fa-robot"></i>
+            <span class="lang-en">AI Learning Assistant</span>
+            <span class="lang-ko" style="display:none;">AI í•™ìŠµ ë„ìš°ë¯¸</span>
+            <button class="close-chatbot"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chatbot-body">
+            <div class="chat-messages">
+                <div class="message ai">
+                    <div class="message-content lang-en">
+                        Ready to help with your studies! What would you like to learn today?
+                    </div>
+                    <div class="message-content lang-ko" style="display:none;">
+                        í•™ìŠµì„ ë„ì™€ë“œë¦´ ì¤€ë¹„ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤! ì˜¤ëŠ˜ ë¬´ì—‡ì„ ë°°ìš°ê³  ì‹¶ìœ¼ì‹ ê°€ìš”?
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your question...">
+                <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="chatbot-toggle">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span class="lang-en">Gumi Smart Learning</span>
+                    <span class="lang-ko" style="display:none;">êµ¬ë¯¸ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ</span>
+                </div>
+                <p class="footer-text lang-en">AI-powered smart learning platform for students in Gumi City</p>
+                <p class="footer-text lang-ko" style="display:none;">êµ¬ë¯¸ì‹œ í•™ìƒë“¤ì„ ìœ„í•œ AI ê¸°ë°˜ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ í”Œëž«í¼</p>
+            </div>
+            <div class="footer-bottom">
+                <p class="lang-en">&copy; 2024 Gumi Smart Learning Support Service. All rights reserved.</p>
+                <p class="lang-ko" style="display:none;">&copy; 2024 êµ¬ë¯¸ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ ì§€ì› ì„œë¹„ìŠ¤. ëª¨ë“  ê¶Œë¦¬ ë³´ìœ .</p>
+            </div>
+        </div>
+    </footer>
+
+        <script src="js/api-loader.js"></script>
+<script src="js/ui-fixes.js"></script>
+<script src="js/quiz-fix.js"></script>
+<script src="js/main.js"></script>
+<script src="js/language.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/chatbot.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,64 @@
+{
+    "title": "7-Day AI Prompting Course",
+    "title_ko": "7일 AI 프롬프팅 코스",
+    "description": "Learn how to effectively communicate with AI to enhance your learning experience",
+    "description_ko": "학습 경험을 향상시키기 위해 AI와 효과적으로 소통하는 방법 배우기",
+    "modules": [
+        {
+            "day": 1,
+            "title": "Basic Prompts: Asking Good Questions",
+            "title_ko": "기본 프롬프트: 좋은 질문하기",
+            "description": "Learn how to ask clear and specific questions to get better answers from AI",
+            "description_ko": "AI로부터 더 나은 답변을 얻기 위해 명확하고 구체적인 질문하는 방법 배우기",
+            "completed": false
+        },
+        {
+            "day": 2,
+            "title": "Goal Setting: Explaining Learning Objectives",
+            "title_ko": "목표 설정: 학습 목표 설명하기",
+            "description": "Set clear learning goals and communicate them effectively to AI",
+            "description_ko": "명확한 학습 목표를 설정하고 AI에게 효과적으로 전달하기",
+            "completed": false
+        },
+        {
+            "day": 3,
+            "title": "Concept Understanding: Breaking Down Ideas",
+            "title_ko": "개념 이해: 아이디어 분해하기",
+            "description": "Learn how to break down complex concepts into understandable parts",
+            "description_ko": "복잡한 개념을 이해 가능한 부분으로 분해하는 방법 배우기",
+            "completed": false
+        },
+        {
+            "day": 4,
+            "title": "Problem Solving: Step-by-Step Solutions",
+            "title_ko": "문제 해결: 단계별 솔루션",
+            "description": "Master the art of getting step-by-step explanations from AI",
+            "description_ko": "AI로부터 단계별 설명을 얻는 기술 마스터하기",
+            "completed": false
+        },
+        {
+            "day": 5,
+            "title": "Feedback: AI Review and Assessment",
+            "title_ko": "피드백: AI 검토 및 평가",
+            "description": "Learn how to ask for feedback and improve your work based on AI suggestions",
+            "description_ko": "피드백을 요청하고 AI 제안을 기반으로 작업을 개선하는 방법 배우기",
+            "completed": false
+        },
+        {
+            "day": 6,
+            "title": "Advanced Usage: Role-Based Instructions",
+            "title_ko": "고급 사용법: 역할 기반 지시",
+            "description": "Use role-playing techniques to get specialized help from AI",
+            "description_ko": "역할극 기술을 사용하여 AI로부터 전문적인 도움 얻기",
+            "completed": false
+        },
+        {
+            "day": 7,
+            "title": "Practice: Real Learning Scenarios",
+            "title_ko": "실습: 실제 학습 시나리오",
+            "description": "Apply all learned techniques in real study situations",
+            "description_ko": "실제 학습 상황에서 배운 모든 기술 적용하기",
+            "completed": false
+        }
+    ]
+}

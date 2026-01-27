@@ -1,0 +1,23 @@
+{
+  "name": "gumi-smart-learning",
+  "version": "1.0.0",
+  "description": "AI-powered smart learning platform for students",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "education",
+    "ai",
+    "learning",
+    "smart-learning",
+    "gumi"
+  ],
+  "author": "Gumi Smart Learning Support Service",
+  "license": "ISC",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

@@ -1,0 +1,50 @@
+[
+    {
+        "id": "korean",
+        "name": "Korean Language",
+        "name_ko": "국어",
+        "icon": "fas fa-book",
+        "description": "Master Korean language skills including reading comprehension, grammar, and writing",
+        "description_ko": "독해, 문법, 작문을 포함한 국어 능력 마스터"
+    },
+    {
+        "id": "math",
+        "name": "Mathematics",
+        "name_ko": "수학",
+        "icon": "fas fa-calculator",
+        "description": "Learn mathematical concepts from basic arithmetic to advanced calculus",
+        "description_ko": "기본 산술에서 고급 미적분학까지 수학 개념 학습"
+    },
+    {
+        "id": "english",
+        "name": "English",
+        "name_ko": "영어",
+        "icon": "fas fa-language",
+        "description": "Improve English reading, writing, listening, and speaking skills",
+        "description_ko": "영어 읽기, 쓰기, 듣기, 말하기 능력 향상"
+    },
+    {
+        "id": "social",
+        "name": "Social Studies",
+        "name_ko": "사회",
+        "icon": "fas fa-globe-asia",
+        "description": "Explore history, geography, economics, and political science",
+        "description_ko": "역사, 지리, 경제, 정치 과학 탐구"
+    },
+    {
+        "id": "science",
+        "name": "Science",
+        "name_ko": "과학",
+        "icon": "fas fa-flask",
+        "description": "Study physics, chemistry, biology, and earth science",
+        "description_ko": "물리학, 화학, 생물학, 지구 과학 공부"
+    },
+    {
+        "id": "history",
+        "name": "Korean History",
+        "name_ko": "한국사",
+        "icon": "fas fa-landmark",
+        "description": "Learn about Korean history from ancient times to modern era",
+        "description_ko": "고대부터 현대까지 한국 역사 학습"
+    }
+]

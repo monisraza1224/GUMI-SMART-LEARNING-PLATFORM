@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Gumi Smart Learning</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ko">한국어</button>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <span class="lang-en">Gumi Smart Learning</span>
+                    <span class="lang-ko" style="display:none;">구미 스마트 학습</span>
+                </div>
+                <h1 class="lang-en">Welcome Back</h1>
+                <h1 class="lang-ko" style="display:none;">다시 오신 것을 환영합니다</h1>
+                <p class="lang-en">Login to continue your learning journey</p>
+                <p class="lang-ko" style="display:none;">학습 여정을 계속하려면 로그인하세요</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email" class="lang-en">Email Address</label>
+                    <label for="email" class="lang-ko" style="display:none;">이메일 주소</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="lang-en">Password</label>
+                    <label for="password" class="lang-ko" style="display:none;">비밀번호</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <span class="lang-en">Login</span>
+                    <span class="lang-ko" style="display:none;">로그인</span>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p class="lang-en">Don't have an account? <a href="register.html">Sign up</a></p>
+                <p class="lang-ko" style="display:none;">계정이 없으신가요? <a href="register.html">회원가입</a></p>
+                <p><a href="index.html" class="lang-en">Back to Home</a><a href="index.html" class="lang-ko" style="display:none;">홈으로 돌아가기</a></p>
+            </div>
+        </div>
+    </div>
+
+        <script src="js/api-loader.js"></script>
+<script src="js/ui-fixes.js"></script>
+<script src="js/quiz-fix.js"></script>
+<script src="js/main.js"></script>
+<script src="js/language.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/chatbot.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>

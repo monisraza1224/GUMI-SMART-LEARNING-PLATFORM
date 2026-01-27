@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Gumi Smart Learning</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ko">한국어</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <span class="lang-en">Gumi Smart Learning</span>
+                <span class="lang-ko" style="display:none;">구미 스마트 학습</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link lang-en">Home</a><a href="index.html" class="nav-link lang-ko" style="display:none;">홈</a></li>
+                <li><a href="subjects.html" class="nav-link lang-en">Subjects</a><a href="subjects.html" class="nav-link lang-ko" style="display:none;">과목</a></li>
+                <li><a href="ai-course.html" class="nav-link lang-en">AI Course</a><a href="ai-course.html" class="nav-link lang-ko" style="display:none;">AI 코스</a></li>
+               <li>
+    <a href="#" class="nav-link quiz-generator-btn lang-en" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">Quiz Generator</a>
+    <a href="#" class="nav-link quiz-generator-btn lang-ko" style="display:none;" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">퀴즈 생성기</a>
+</li>
+                <li><a href="dashboard.html" class="nav-link lang-en">Dashboard</a><a href="dashboard.html" class="nav-link lang-ko" style="display:none;">대시보드</a></li>
+                <li><a href="profile.html" class="nav-link active lang-en">Profile</a><a href="profile.html" class="nav-link active lang-ko" style="display:none;">프로필</a></li>
+                <li><button onclick="logout()" class="btn btn-outline lang-en">Logout</button><button onclick="logout()" class="btn btn-outline lang-ko" style="display:none;">로그아웃</button></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="profile-container">
+        <div class="container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="profile-info">
+                    <h1 id="profileName">Student Name</h1>
+                    <p id="profileEmail">student@email.com</p>
+                    <p id="profileType">General Student</p>
+                </div>
+            </div>
+            
+            <div class="settings-grid">
+                <div class="setting-card">
+                    <h3 class="lang-en">Personal Information</h3>
+                    <h3 class="lang-ko" style="display:none;">개인 정보</h3>
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label for="name" class="lang-en">Full Name</label>
+                            <label for="name" class="lang-ko" style="display:none;">전체 이름</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="lang-en">Email Address</label>
+                            <label for="email" class="lang-ko" style="display:none;">이메일 주소</label>
+                            <input type="email" id="email" class="form-control" required readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="studentType" class="lang-en">Student Type</label>
+                            <label for="studentType" class="lang-ko" style="display:none;">학생 유형</label>
+                            <select id="studentType" class="form-select" required>
+                                <option value="general">
+                                    <span class="lang-en">General Student</span>
+                                    <span class="lang-ko" style="display:none;">일반 학생</span>
+                                </option>
+                                <option value="advanced">
+                                    <span class="lang-en">Advanced Student</span>
+                                    <span class="lang-ko" style="display:none;">고급 학생</span>
+                                </option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="language" class="lang-en">Preferred Language</label>
+                            <label for="language" class="lang-ko" style="display:none;">선호 언어</label>
+                            <select id="language" class="form-select" required>
+                                <option value="en">English</option>
+                                <option value="ko">한국어</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <span class="lang-en">Save Changes</span>
+                            <span class="lang-ko" style="display:none;">변경사항 저장</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="setting-card">
+                    <h3 class="lang-en">Change Password</h3>
+                    <h3 class="lang-ko" style="display:none;">비밀번호 변경</h3>
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label for="currentPassword" class="lang-en">Current Password</label>
+                            <label for="currentPassword" class="lang-ko" style="display:none;">현재 비밀번호</label>
+                            <input type="password" id="currentPassword" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="newPassword" class="lang-en">New Password</label>
+                            <label for="newPassword" class="lang-ko" style="display:none;">새 비밀번호</label>
+                            <input type="password" id="newPassword" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmNewPassword" class="lang-en">Confirm New Password</label>
+                            <label for="confirmNewPassword" class="lang-ko" style="display:none;">새 비밀번호 확인</label>
+                            <input type="password" id="confirmNewPassword" class="form-control">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <span class="lang-en">Update Password</span>
+                            <span class="lang-ko" style="display:none;">비밀번호 업데이트</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="setting-card">
+                    <h3 class="lang-en">Learning Statistics</h3>
+                    <h3 class="lang-ko" style="display:none;">학습 통계</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="statModules">0/7</div>
+                            <div class="stat-label lang-en">AI Modules</div>
+                            <div class="stat-label lang-ko" style="display:none;">AI 모듈</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="statSubjects">0</div>
+                            <div class="stat-label lang-en">Subjects</div>
+                            <div class="stat-label lang-ko" style="display:none;">과목</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 20px; color: var(--gray-color);">
+                        <span class="lang-en">Member since: </span>
+                        <span class="lang-ko" style="display:none;">회원 가입일: </span>
+                        <span id="memberSince">2024</span>
+                    </p>
+                </div>
+                
+                <div class="setting-card">
+                    <h3 class="lang-en">Account Actions</h3>
+                    <h3 class="lang-ko" style="display:none;">계정 작업</h3>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <button onclick="exportData()" class="btn btn-outline">
+                            <span class="lang-en">Export Learning Data</span>
+                            <span class="lang-ko" style="display:none;">학습 데이터 내보내기</span>
+                        </button>
+                        <button onclick="clearHistory()" class="btn btn-outline">
+                            <span class="lang-en">Clear Learning History</span>
+                            <span class="lang-ko" style="display:none;">학습 기록 지우기</span>
+                        </button>
+                        <button onclick="deleteAccount()" class="btn" style="background: var(--danger-color); color: white;">
+                            <span class="lang-en">Delete Account</span>
+                            <span class="lang-ko" style="display:none;">계정 삭제</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span class="lang-en">Gumi Smart Learning</span>
+                    <span class="lang-ko" style="display:none;">구미 스마트 학습</span>
+                </div>
+                <p class="footer-text lang-en">AI-powered smart learning platform for students in Gumi City</p>
+                <p class="footer-text lang-ko" style="display:none;">구미시 학생들을 위한 AI 기반 스마트 학습 플랫폼</p>
+            </div>
+            <div class="footer-bottom">
+                <p class="lang-en">&copy; 2024 Gumi Smart Learning Support Service. All rights reserved.</p>
+                <p class="lang-ko" style="display:none;">&copy; 2024 구미 스마트 학습 지원 서비스. 모든 권리 보유.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <script>
+        // Profile page specific functions
+        function exportData() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const dataStr = JSON.stringify(user, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `gumi-learning-data-${user.name}.json`;
+            link.click();
+            
+            alert(document.querySelector('.lang-en') ? 
+                'Data exported successfully!' : '데이터가 성공적으로 내보내졌습니다!');
+        }
+        
+        function clearHistory() {
+            if (confirm(document.querySelector('.lang-en') ? 
+                'Are you sure you want to clear all learning history?' : 
+                '모든 학습 기록을 지우시겠습니까?')) {
+                const user = JSON.parse(localStorage.getItem('currentUser'));
+                if (user) {
+                    user.completedModules = [];
+                    user.learningProgress = {};
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    
+                    // Update in users array
+                    const users = JSON.parse(localStorage.getItem('users')) || [];
+                    const userIndex = users.findIndex(u => u.id === user.id);
+                    if (userIndex !== -1) {
+                        users[userIndex] = user;
+                        localStorage.setItem('users', JSON.stringify(users));
+                    }
+                    
+                    alert(document.querySelector('.lang-en') ? 
+                        'Learning history cleared!' : '학습 기록이 지워졌습니다!');
+                    location.reload();
+                }
+            }
+        }
+        
+        function deleteAccount() {
+            if (confirm(document.querySelector('.lang-en') ? 
+                'Are you sure you want to delete your account? This action cannot be undone.' :
+                '계정을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
+                const user = JSON.parse(localStorage.getItem('currentUser'));
+                if (user) {
+                    // Remove from users array
+                    const users = JSON.parse(localStorage.getItem('users')) || [];
+                    const updatedUsers = users.filter(u => u.id !== user.id);
+                    localStorage.setItem('users', JSON.stringify(updatedUsers));
+                    
+                    // Remove current user
+                    localStorage.removeItem('currentUser');
+                    localStorage.removeItem('currentSession');
+                    
+                    alert(document.querySelector('.lang-en') ? 
+                        'Account deleted successfully. Redirecting to home page...' :
+                        '계정이 성공적으로 삭제되었습니다. 홈페이지로 이동합니다...');
+                    
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1000);
+                }
+            }
+        }
+        
+        // Initialize profile data
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (user) {
+                // Update statistics
+                document.getElementById('statModules').textContent = 
+                    `${user.completedModules?.length || 0}/7`;
+                document.getElementById('statSubjects').textContent = 
+                    Object.keys(user.learningProgress || {}).length;
+                document.getElementById('memberSince').textContent = 
+                    new Date(user.createdAt).toLocaleDateString();
+            }
+        });
+    </script>
+        <script src="js/api-loader.js"></script>
+<script src="js/ui-fixes.js"></script>
+<script src="js/quiz-fix.js"></script>
+<script src="js/main.js"></script>
+<script src="js/language.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/chatbot.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>

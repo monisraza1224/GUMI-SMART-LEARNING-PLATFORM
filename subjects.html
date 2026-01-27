@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects - Gumi Smart Learning</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ko">í•œêµ­ì–´</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <span class="lang-en">Gumi Smart Learning</span>
+                <span class="lang-ko" style="display:none;">êµ¬ë¯¸ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link lang-en">Home</a><a href="index.html" class="nav-link lang-ko" style="display:none;">í™ˆ</a></li>
+                <li><a href="subjects.html" class="nav-link active lang-en">Subjects</a><a href="subjects.html" class="nav-link active lang-ko" style="display:none;">ê³¼ëª©</a></li>
+                <li><a href="ai-course.html" class="nav-link lang-en">AI Course</a><a href="ai-course.html" class="nav-link lang-ko" style="display:none;">AI ì½”ìŠ¤</a></li>
+               <li>
+    <a href="#" class="nav-link quiz-generator-btn lang-en" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">Quiz Generator</a>
+    <a href="#" class="nav-link quiz-generator-btn lang-ko" style="display:none;" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">퀴즈 생성기</a>
+</li>
+                <li><a href="dashboard.html" class="nav-link lang-en">Dashboard</a><a href="dashboard.html" class="nav-link lang-ko" style="display:none;">ëŒ€ì‹œë³´ë“œ</a></li>
+                <li><a href="profile.html" class="nav-link lang-en">Profile</a><a href="profile.html" class="nav-link lang-ko" style="display:none;">í”„ë¡œí•„</a></li>
+                <li><button onclick="logout()" class="btn btn-outline lang-en">Logout</button><button onclick="logout()" class="btn btn-outline lang-ko" style="display:none;">ë¡œê·¸ì•„ì›ƒ</button></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="features">
+        <div class="container">
+            <div class="dashboard-header">
+                <div class="welcome-message">
+                    <h1 class="lang-en">Learning Subjects</h1>
+                    <h1 class="lang-ko" style="display:none;">í•™ìŠµ ê³¼ëª©</h1>
+                    <p class="lang-en">Choose your subject and difficulty level to start learning</p>
+                    <p class="lang-ko" style="display:none;">ê³¼ëª©ê³¼ ë‚œì´ë„ë¥¼ ì„ íƒí•˜ì—¬ í•™ìŠµì„ ì‹œìž‘í•˜ì„¸ìš”</p>
+                </div>
+                <a href="dashboard.html" class="btn btn-outline lang-en">Back to Dashboard</a>
+                <a href="dashboard.html" class="btn btn-outline lang-ko" style="display:none;">ëŒ€ì‹œë³´ë“œë¡œ ëŒì•„ê°€ê¸°</a>
+            </div>
+            
+            <div class="subjects-grid" id="subjectsContainer">
+                <!-- Subjects will be loaded by JavaScript -->
+            </div>
+            
+            <div style="margin-top: 60px; text-align: center;">
+                <h2 class="section-title lang-en">How to Use the Subjects</h2>
+                <h2 class="section-title lang-ko" style="display:none;">ê³¼ëª© ì‚¬ìš© ë°©ë²•</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mouse-pointer"></i>
+                        </div>
+                        <h3 class="lang-en">1. Select Subject</h3>
+                        <h3 class="lang-ko" style="display:none;">1. ê³¼ëª© ì„ íƒ</h3>
+                        <p class="lang-en">Choose from six major subjects</p>
+                        <p class="lang-ko" style="display:none;">6ëŒ€ ì£¼ìš” ê³¼ëª© ì¤‘ ì„ íƒí•˜ì„¸ìš”</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-signal"></i>
+                        </div>
+                        <h3 class="lang-en">2. Choose Difficulty</h3>
+                        <h3 class="lang-ko" style="display:none;">2. ë‚œì´ë„ ì„ íƒ</h3>
+                        <p class="lang-en">Select High, Medium, or Low difficulty</p>
+                        <p class="lang-ko" style="display:none;">ê³ ê¸‰, ì¤‘ê¸‰, ì´ˆê¸‰ ë‚œì´ë„ ì¤‘ ì„ íƒí•˜ì„¸ìš”</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="lang-en">3. Start Learning</h3>
+                        <h3 class="lang-ko" style="display:none;">3. í•™ìŠµ ì‹œìž‘</h3>
+                        <p class="lang-en">AI assistant will guide you through lessons</p>
+                        <p class="lang-ko" style="display:none;">AI ë„ìš°ë¯¸ê°€ ìˆ˜ì—…ì„ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chatbot Widget -->
+    <div class="chatbot-widget">
+        <div class="chatbot-header">
+            <i class="fas fa-robot"></i>
+            <span class="lang-en">AI Learning Assistant</span>
+            <span class="lang-ko" style="display:none;">AI í•™ìŠµ ë„ìš°ë¯¸</span>
+            <button class="close-chatbot"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chatbot-body">
+            <div class="chat-messages">
+                <div class="message ai">
+                    <div class="message-content lang-en">
+                        I can help you with any subject! Which one would you like to learn?
+                    </div>
+                    <div class="message-content lang-ko" style="display:none;">
+                        ì–´ë–¤ ê³¼ëª©ì´ë“  ë„ì™€ë“œë¦´ ìˆ˜ ìžˆìŠµë‹ˆë‹¤! ì–´ë–¤ ê³¼ëª©ì„ ë°°ìš°ê³  ì‹¶ìœ¼ì‹ ê°€ìš”?
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your question...">
+                <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="chatbot-toggle">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span class="lang-en">Gumi Smart Learning</span>
+                    <span class="lang-ko" style="display:none;">êµ¬ë¯¸ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ</span>
+                </div>
+                <p class="footer-text lang-en">AI-powered smart learning platform for students in Gumi City</p>
+                <p class="footer-text lang-ko" style="display:none;">êµ¬ë¯¸ì‹œ í•™ìƒë“¤ì„ ìœ„í•œ AI ê¸°ë°˜ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ í”Œëž«í¼</p>
+            </div>
+            <div class="footer-bottom">
+                <p class="lang-en">&copy; 2024 Gumi Smart Learning Support Service. All rights reserved.</p>
+                <p class="lang-ko" style="display:none;">&copy; 2024 êµ¬ë¯¸ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ ì§€ì› ì„œë¹„ìŠ¤. ëª¨ë“  ê¶Œë¦¬ ë³´ìœ .</p>
+            </div>
+        </div>
+    </footer>
+
+      <script src="js/api-loader.js"></script>
+<script src="js/ui-fixes.js"></script>
+<script src="js/quiz-fix.js"></script>
+<script src="js/main.js"></script>
+<script src="js/language.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/chatbot.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>
+
+

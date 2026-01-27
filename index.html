@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gumi Smart Learning Support Service</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ko">한국어</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <span class="lang-en">Gumi Smart Learning</span>
+                <span class="lang-ko" style="display:none;">구미 스마트 학습 지원 서비스</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link lang-en">Home</a><a href="index.html" class="nav-link lang-ko" style="display:none;">홈</a></li>
+                <li><a href="subjects.html" class="nav-link lang-en">Subjects</a><a href="subjects.html" class="nav-link lang-ko" style="display:none;">과목</a></li>
+                <li><a href="ai-course.html" class="nav-link lang-en">AI Course</a><a href="ai-course.html" class="nav-link lang-ko" style="display:none;">AI 코스</a></li>
+                <li>
+    <a href="#" class="nav-link quiz-generator-btn lang-en" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">Quiz Generator</a>
+    <a href="#" class="nav-link quiz-generator-btn lang-ko" style="display:none;" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">퀴즈 생성기</a>
+</li>
+                <li><a href="dashboard.html" class="nav-link lang-en">Dashboard</a><a href="dashboard.html" class="nav-link lang-ko" style="display:none;">대시보드</a></li>
+                <li><a href="login.html" class="btn btn-outline lang-en">Login</a><a href="login.html" class="btn btn-outline lang-ko" style="display:none;">로그인</a></li>
+                <li><a href="register.html" class="btn btn-primary lang-en">Sign Up</a><a href="register.html" class="btn btn-primary lang-ko" style="display:none;">회원가입</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="lang-en">AI-Powered Smart Learning Platform</h1>
+                <h1 class="lang-ko" style="display:none;">AI 기반 스마트 학습 플랫폼</h1>
+                <p class="subtitle lang-en">Personalized learning with AI teacher support for students in Gumi City and beyond</p>
+                <p class="subtitle lang-ko" style="display:none;">구미시 및 전국의 학생들을 위한 AI 교사 지원 맞춤형 학습</p>
+                <div class="hero-buttons">
+                    <a href="register.html" class="btn btn-primary btn-large lang-en">Start Learning Free</a>
+                    <a href="register.html" class="btn btn-primary btn-large lang-ko" style="display:none;">무료로 학습 시작하기</a>
+                    <button class="btn btn-outline btn-large try-chatbot-btn">
+                        <span class="lang-en">Try AI Assistant</span>
+                        <span class="lang-ko" style="display:none;">AI 도우미 사용해보기</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Learning Platform">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title lang-en">What We Offer</h2>
+            <h2 class="section-title lang-ko" style="display:none;">제공하는 서비스</h2>
+            <p class="section-subtitle lang-en">A complete learning ecosystem designed to support students</p>
+            <p class="section-subtitle lang-ko" style="display:none;">학생들을 지원하기 위해 설계된 완전한 학습 생태계</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="lang-en">Six Major Subjects</h3>
+                    <h3 class="lang-ko" style="display:none;">6대 주요 과목</h3>
+                    <p class="lang-en">Korean, Math, English, Social Studies, Science, Korean History</p>
+                    <p class="lang-ko" style="display:none;">국어, 수학, 영어, 사회, 과학, 한국사</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="lang-en">AI Learning Assistant</h3>
+                    <h3 class="lang-ko" style="display:none;">AI 학습 도우미</h3>
+                    <p class="lang-en">24/7 AI tutor that explains concepts and solves problems step-by-step</p>
+                    <p class="lang-ko" style="display:none;">개념을 설명하고 문제를 단계별로 해결하는 24/7 AI 튜터</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3 class="lang-en">Quiz Generator</h3>
+                    <h3 class="lang-ko" style="display:none;">퀴즈 생성기</h3>
+                    <p class="lang-en">AI-powered quiz generator for all subjects and difficulty levels</p>
+                    <p class="lang-ko" style="display:none;">모든 과목과 난이도의 AI 기반 퀴즈 생성기</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="lang-en">Personalized Learning</h3>
+                    <h3 class="lang-ko" style="display:none;">맞춤형 학습</h3>
+                    <p class="lang-en">Different paths for general students and advanced learners</p>
+                    <p class="lang-ko" style="display:none;">일반 학생과 고급 학습자를 위한 다른 학습 경로</p>
+                </div>
+            </div>
+            
+            <!-- New Section for Quiz Generator -->
+            <div style="margin-top: 80px; text-align: center;">
+                <h2 class="section-title lang-en">AI Quiz Generator</h2>
+                <h2 class="section-title lang-ko" style="display:none;">AI 퀴즈 생성기</h2>
+                <p class="section-subtitle lang-en">Generate custom quizzes instantly with AI</p>
+                <p class="section-subtitle lang-ko" style="display:none;">AI로 즉시 맞춤형 퀴즈 생성하기</p>
+                
+                <div class="feature-card" style="max-width: 600px; margin: 0 auto;">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="lang-en">Smart Quiz Generation</h3>
+                    <h3 class="lang-ko" style="display:none;">스마트 퀴즈 생성</h3>
+                    <p class="lang-en">Create custom quizzes for any subject, difficulty level, and topic. Perfect for exam preparation!</p>
+                    <p class="lang-ko" style="display:none;">어떤 과목, 난이도, 주제에 대한 맞춤형 퀴즈를 생성하세요. 시험 준비에 완벽합니다!</p>
+                    
+                    <button class="btn quiz-generator-btn btn-large" style="margin-top: 20px;">
+                        <i class="fas fa-play"></i>
+                        <span class="lang-en">Generate Quiz Now</span>
+                        <span class="lang-ko" style="display:none;">지금 퀴즈 생성하기</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="features" style="background: #f9fafb;">
+        <div class="container">
+            <h2 class="section-title lang-en">How It Works</h2>
+            <h2 class="section-title lang-ko" style="display:none;">사용 방법</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-number">1</div>
+                    <h3 class="lang-en">Choose Subject</h3>
+                    <h3 class="lang-ko" style="display:none;">과목 선택</h3>
+                    <p class="lang-en">Select from 6 major subjects</p>
+                    <p class="lang-ko" style="display:none;">6대 주요 과목 중 선택하세요</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-number">2</div>
+                    <h3 class="lang-en">Set Difficulty</h3>
+                    <h3 class="lang-ko" style="display:none;">난이도 설정</h3>
+                    <p class="lang-en">Choose Beginner, Intermediate or Advanced</p>
+                    <p class="lang-ko" style="display:none;">초급, 중급 또는 고급 선택</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-number">3</div>
+                    <h3 class="lang-en">Generate Quiz</h3>
+                    <h3 class="lang-ko" style="display:none;">퀴즈 생성</h3>
+                    <p class="lang-en">AI creates personalized quiz instantly</p>
+                    <p class="lang-ko" style="display:none;">AI가 즉시 맞춤형 퀴즈 생성</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-number">4</div>
+                    <h3 class="lang-en">Learn & Improve</h3>
+                    <h3 class="lang-ko" style="display:none;">학습 및 향상</h3>
+                    <p class="lang-en">Get explanations and track progress</p>
+                    <p class="lang-ko" style="display:none;">설명을 얻고 진행 상황 추적</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chatbot Widget -->
+    <div class="chatbot-widget">
+        <div class="chatbot-header">
+            <i class="fas fa-robot"></i>
+            <span class="lang-en">AI Learning Assistant</span>
+            <span class="lang-ko" style="display:none;">AI 학습 도우미</span>
+            <button class="close-chatbot"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chatbot-body">
+            <div class="chat-messages">
+                <div class="message ai">
+                    <div class="message-content lang-en">
+                        Hello! I'm your AI learning assistant. How can I help you study today?
+                    </div>
+                    <div class="message-content lang-ko" style="display:none;">
+                        안녕하세요! 저는 당신의 AI 학습 도우미입니다. 오늘 어떻게 학습을 도와드릴까요?
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your question...">
+                <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="chatbot-toggle">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span class="lang-en">Gumi Smart Learning</span>
+                    <span class="lang-ko" style="display:none;">구미 스마트 학습</span>
+                </div>
+                <p class="footer-text lang-en">AI-powered smart learning platform for students in Gumi City</p>
+                <p class="footer-text lang-ko" style="display:none;">구미시 학생들을 위한 AI 기반 스마트 학습 플랫폼</p>
+            </div>
+            <div class="footer-bottom">
+                <p class="lang-en">&copy; 2024 Gumi Smart Learning Support Service. All rights reserved.</p>
+                <p class="lang-ko" style="display:none;">&copy; 2024 구미 스마트 학습 지원 서비스. 모든 권리 보유.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/api-loader.js"></script>
+<script src="js/ui-fixes.js"></script>
+<script src="js/quiz-fix.js"></script>
+<script src="js/main.js"></script>
+<script src="js/language.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/chatbot.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>
