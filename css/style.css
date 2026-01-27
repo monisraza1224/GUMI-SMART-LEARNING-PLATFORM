@@ -1,47 +1,4 @@
-/* ==================== */
-/* CRITICAL MOBILE FIXES */
-/* ==================== */
-
-/* Prevent horizontal scrolling and ensure mobile compatibility */
-html, body {
-    overflow-x: hidden;
-    max-width: 100%;
-    position: relative;
-}
-
-/* Force all images and media to be responsive */
-img, video, iframe, canvas, svg {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Ensure all containers don't exceed screen width */
-.container, .navbar, section, div, header, footer {
-    max-width: 100vw;
-}
-
-/* Fix for mobile touch targets */
-button, .btn, a, input, select, textarea {
-    min-height: 44px; /* Apple's recommended minimum touch target */
-    font-size: 16px; /* Prevents iOS zoom on focus */
-}
-
-/* Remove blue highlight on mobile taps */
-* {
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* Improve text readability on mobile */
-body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-}
-
-/* ==================== */
-/* EXISTING MEDIA QUERIES */
-/* ==================== *//* Reset and Base Styles */
+/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -75,10 +32,10 @@ body {
     padding: 0 20px;
 }
 
-/* Extra Small Cubic Language Toggle */
+/* Language Toggle - FIXED VERSION */
 .language-toggle {
     position: fixed;
-    bottom: 25px; /* Adjusted position */
+    bottom: 25px;
     left: 20px;
     z-index: 1001;
     background: white;
@@ -88,6 +45,8 @@ body {
     display: flex;
     gap: 1px;
     font-size: 0.65rem;
+    width: auto !important; /* Prevent full width */
+    max-width: 200px; /* Limit maximum width */
 }
 
 .lang-btn {
@@ -101,6 +60,7 @@ body {
     min-width: 40px;
     text-align: center;
     border: 1px solid #e5e7eb;
+    white-space: nowrap; /* Prevent text wrapping */
 }
 
 .lang-btn:hover {
@@ -112,6 +72,7 @@ body {
     color: white;
     border-color: var(--primary-color);
 }
+
 /* Navigation */
 .navbar {
     background: white;
@@ -771,6 +732,10 @@ body {
     color: #9CA3AF;
 }
 
+/* ==================== */
+/* REMOVED DUPLICATE SECTIONS */
+/* ==================== */
+
 /* Responsive Design */
 @media (max-width: 992px) {
     .hero .container {
@@ -845,8 +810,22 @@ body {
         right: 20px;
         left: 20px;
     }
+    
+    /* Mobile fix for language toggle */
+    .language-toggle {
+        bottom: 20px;
+        left: 20px;
+        flex-direction: row;
+        max-width: 180px;
+    }
+    
+    .lang-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
 }
-/* Chatbot Widget Styles */
+
+/* Chatbot Widget Styles - Consolidated */
 .chatbot-widget {
     position: fixed;
     bottom: 30px;
@@ -1240,6 +1219,7 @@ body {
         font-size: 1.3rem;
     }
 }
+
 /* Quiz Question Type Styles */
 .question-types {
     display: flex;
@@ -1360,26 +1340,9 @@ body {
     background: var(--primary-dark);
 }
 
-/* Quiz modal show animation */
-.quiz-modal.show .quiz-modal-content {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-}
-/* Language Toggle Fix */
+/* Logged-in state fixes */
 .logged-in .language-toggle {
     right: 180px;
-}
-
-/* Chatbot Visibility Fix */
-.chatbot-toggle {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* Quiz Generator Button Fix */
-.quiz-generator-btn {
-    cursor: pointer;
 }
 
 /* Responsive fixes */
@@ -1392,11 +1355,5 @@ body {
 @media (max-width: 480px) {
     .logged-in .language-toggle {
         right: 100px;
-        flex-direction: column;
-    }
-    
-    .lang-btn {
-        padding: 6px 10px;
-        font-size: 0.8rem;
     }
 }
