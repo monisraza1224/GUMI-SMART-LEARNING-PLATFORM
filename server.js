@@ -4,7 +4,12 @@ const path = require('path');
 const url = require('url');
 
 // Load environment variables
-require('dotenv').config();
+try {
+  require('dotenv').config();
+  console.log('✅ .env file loaded locally');
+} catch (error) {
+  console.log('🌐 Using Render environment variables');
+}
 
 const PORT = 8000;
 const MIME_TYPES = {
