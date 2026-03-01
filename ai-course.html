@@ -6,6 +6,7 @@
     <title>AI Course - Gumi Smart Learning</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/ai-course-modules.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -13,7 +14,7 @@
     <!-- Language Toggle -->
     <div class="language-toggle">
         <button class="lang-btn active" data-lang="en">English</button>
-        <button class="lang-btn" data-lang="ko">í•œêµ­ì–´</button>
+        <button class="lang-btn" data-lang="ko">한국어</button>
     </div>
 
     <!-- Navigation -->
@@ -22,19 +23,17 @@
             <div class="logo">
                 <i class="fas fa-brain"></i>
                 <span class="lang-en">Gumi Smart Learning</span>
-                    <span class="lang-ko" style="display:none;">êµ¬ë¯¸ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ</span>
+                <span class="lang-ko" style="display:none;">구미 스마트 학습</span>
             </div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link lang-en">Home</a><a href="index.html" class="nav-link lang-ko" style="display:none;">í™ˆ</a></li>
-                <li><a href="subjects.html" class="nav-link lang-en">Subjects</a><a href="subjects.html" class="nav-link lang-ko" style="display:none;">ê³¼ëª©</a></li>
-                <li><a href="ai-course.html" class="nav-link active lang-en">AI Course</a><a href="ai-course.html" class="nav-link active lang-ko" style="display:none;">AI ì½”ìŠ¤</a></li>
-               <li>
-    <a href="#" class="nav-link quiz-generator-btn lang-en" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">Quiz Generator</a>
-    <a href="#" class="nav-link quiz-generator-btn lang-ko" style="display:none;" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">퀴즈 생성기</a>
-</li>
-                <li><a href="dashboard.html" class="nav-link lang-en">Dashboard</a><a href="dashboard.html" class="nav-link lang-ko" style="display:none;">ëŒ€ì‹œë³´ë“œ</a></li>
-                <li><a href="profile.html" class="nav-link lang-en">Profile</a><a href="profile.html" class="nav-link lang-ko" style="display:none;">í”„ë¡œí•„</a></li>
-                <li><button onclick="logout()" class="btn btn-outline lang-en">Logout</button><button onclick="logout()" class="btn btn-outline lang-ko" style="display:none;">ë¡œê·¸ì•„ì›ƒ</button></li>
+                <li><a href="index.html" class="nav-link lang-en">Home</a><a href="index.html" class="nav-link lang-ko" style="display:none;">홈</a></li>
+                <li><a href="subjects.html" class="nav-link lang-en">Subjects</a><a href="subjects.html" class="nav-link lang-ko" style="display:none;">과목</a></li>
+                <li><a href="ai-course.html" class="nav-link active lang-en">AI Course</a><a href="ai-course.html" class="nav-link active lang-ko" style="display:none;">AI 코스</a></li>
+                <li><a href="question-bank.html" class="nav-link lang-en">Question Bank</a><a href="question-bank.html" class="nav-link lang-ko" style="display:none;">문제 은행</a></li>
+                <li><a href="#" class="nav-link quiz-generator-btn lang-en" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">Quiz Generator</a><a href="#" class="nav-link quiz-generator-btn lang-ko" style="display:none;" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">퀴즈 생성기</a></li>
+                <li><a href="dashboard.html" class="nav-link lang-en">Dashboard</a><a href="dashboard.html" class="nav-link lang-ko" style="display:none;">대시보드</a></li>
+                <li><a href="profile.html" class="nav-link lang-en">Profile</a><a href="profile.html" class="nav-link lang-ko" style="display:none;">프로필</a></li>
+                <li><button onclick="logout()" class="btn btn-outline lang-en">Logout</button><button onclick="logout()" class="btn btn-outline lang-ko" style="display:none;">로그아웃</button></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -49,72 +48,81 @@
             <div class="dashboard-header">
                 <div class="welcome-message">
                     <h1 class="lang-en">7-Day AI Prompting Course</h1>
-                    <h1 class="lang-ko" style="display:none;">7ì¼ AI í”„ë¡¬í”„íŒ… ì½”ìŠ¤</h1>
+                    <h1 class="lang-ko" style="display:none;">7일 AI 프롬프팅 코스</h1>
                     <p class="lang-en">Learn how to communicate effectively with AI for better learning</p>
-                    <p class="lang-ko" style="display:none;">ë” ë‚˜ì€ í•™ìŠµì„ ìœ„í•´ AIì™€ íš¨ê³¼ì ìœ¼ë¡œ ì†Œí†µí•˜ëŠ” ë°©ë²• ë°°ìš°ê¸°</p>
+                    <p class="lang-ko" style="display:none;">더 나은 학습을 위해 AI와 효과적으로 소통하는 방법 배우기</p>
                 </div>
                 <a href="dashboard.html" class="btn btn-outline lang-en">Back to Dashboard</a>
-                <a href="dashboard.html" class="btn btn-outline lang-ko" style="display:none;">ëŒ€ì‹œë³´ë“œë¡œ ëŒì•„ê°€ê¸°</a>
+                <a href="dashboard.html" class="btn btn-outline lang-ko" style="display:none;">대시보드로 돌아가기</a>
             </div>
             
-            <div class="course-progress">
-                <h3 class="lang-en">Your Progress</h3>
-                <h3 class="lang-ko" style="display:none;">ì§„í–‰ ìƒí™©</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
+            <!-- Enhanced Progress Section -->
+            <div class="course-progress-detailed">
+                <div class="progress-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="completedModules">0</div>
+                        <div class="stat-label lang-en">Modules Completed</div>
+                        <div class="stat-label lang-ko" style="display:none;">완료된 모듈</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalModules">7</div>
+                        <div class="stat-label lang-en">Total Modules</div>
+                        <div class="stat-label lang-ko" style="display:none;">전체 모듈</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="downloadsCount">0</div>
+                        <div class="stat-label lang-en">Downloads</div>
+                        <div class="stat-label lang-ko" style="display:none;">다운로드</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="previewsCount">0</div>
+                        <div class="stat-label lang-en">Materials Viewed</div>
+                        <div class="stat-label lang-ko" style="display:none;">자료 조회</div>
+                    </div>
                 </div>
-                <p style="margin-top: 10px;">
-                    <span class="lang-en">Complete all 7 modules to master AI prompting skills</span>
-                    <span class="lang-ko" style="display:none;">7ê°œ ëª¨ë“ˆì„ ëª¨ë‘ ì™„ë£Œí•˜ì—¬ AI í”„ë¡¬í”„íŒ… ê¸°ìˆ ì„ ë§ˆìŠ¤í„°í•˜ì„¸ìš”</span>
-                </p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
             </div>
             
-            <div class="course-modules" id="courseModules">
-                <!-- Modules will be loaded by JavaScript -->
+            <!-- Module Tabs -->
+            <div class="module-tabs" id="moduleTabs">
+                <!-- Tabs will be loaded by JavaScript -->
             </div>
             
+            <!-- Module Content -->
+            <div class="module-content" id="moduleContent">
+                <!-- Content will be loaded by JavaScript -->
+            </div>
+            
+            <!-- Course Materials Overview -->
             <div style="margin-top: 60px;">
-                <h2 class="section-title lang-en">Course Benefits</h2>
-                <h2 class="section-title lang-ko" style="display:none;">ì½”ìŠ¤ í˜œíƒ</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-comments"></i>
-                        </div>
-                        <h3 class="lang-en">Better Communication</h3>
-                        <h3 class="lang-ko" style="display:none;">ë” ë‚˜ì€ ì†Œí†µ</h3>
-                        <p class="lang-en">Learn to ask clear and effective questions</p>
-                        <p class="lang-ko" style="display:none;">ëª…í™•í•˜ê³  íš¨ê³¼ì ì¸ ì§ˆë¬¸í•˜ëŠ” ë°©ë²• ë°°ìš°ê¸°</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <h3 class="lang-en">Enhanced Learning</h3>
-                        <h3 class="lang-ko" style="display:none;">í–¥ìƒëœ í•™ìŠµ</h3>
-                        <p class="lang-en">Get more accurate and helpful AI responses</p>
-                        <p class="lang-ko" style="display:none;">ë” ì •í™•í•˜ê³  ë„ì›€ì´ ë˜ëŠ” AI ì‘ë‹µ ì–»ê¸°</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3 class="lang-en">Study Efficiency</h3>
-                        <h3 class="lang-ko" style="display:none;">í•™ìŠµ íš¨ìœ¨ì„±</h3>
-                        <p class="lang-en">Save time and learn more effectively</p>
-                        <p class="lang-ko" style="display:none;">ì‹œê°„ì„ ì ˆì•½í•˜ê³  ë” íš¨ê³¼ì ìœ¼ë¡œ í•™ìŠµí•˜ê¸°</p>
-                    </div>
+                <h2 class="section-title lang-en">Course Materials</h2>
+                <h2 class="section-title lang-ko" style="display:none;">코스 자료</h2>
+                <div class="features-grid" id="courseMaterials">
+                    <!-- Materials will be loaded by JavaScript -->
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- PDF Preview Modal -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-modal-content">
+            <div class="pdf-modal-header">
+                <h3 id="pdfModalTitle">PDF Preview</h3>
+                <button class="close-pdf-modal" onclick="closePDFModal()">&times;</button>
+            </div>
+            <iframe id="pdfViewer" class="pdf-viewer" src=""></iframe>
+        </div>
+    </div>
 
     <!-- AI Chatbot Widget -->
     <div class="chatbot-widget">
         <div class="chatbot-header">
             <i class="fas fa-robot"></i>
             <span class="lang-en">AI Learning Assistant</span>
-            <span class="lang-ko" style="display:none;">AI í•™ìŠµ ë„ìš°ë¯¸</span>
+            <span class="lang-ko" style="display:none;">AI 학습 도우미</span>
             <button class="close-chatbot"><i class="fas fa-times"></i></button>
         </div>
         <div class="chatbot-body">
@@ -124,7 +132,7 @@
                         I'm here to help with the AI prompting course! Need any guidance?
                     </div>
                     <div class="message-content lang-ko" style="display:none;">
-                        AI í”„ë¡¬í”„íŒ… ì½”ìŠ¤ë¥¼ ë„ì™€ë“œë¦´ê²Œìš”! ë„ì›€ì´ í•„ìš”í•˜ì‹ ê°€ìš”?
+                        AI 프롬프팅 코스를 도와드릴게요! 도움이 필요하신가요?
                     </div>
                 </div>
             </div>
@@ -145,27 +153,26 @@
                 <div class="footer-logo">
                     <i class="fas fa-brain"></i>
                     <span class="lang-en">Gumi Smart Learning</span>
-                    <span class="lang-ko" style="display:none;">êµ¬ë¯¸ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ</span>
+                    <span class="lang-ko" style="display:none;">구미 스마트 학습</span>
                 </div>
                 <p class="footer-text lang-en">AI-powered smart learning platform for students in Gumi City</p>
-                <p class="footer-text lang-ko" style="display:none;">êµ¬ë¯¸ì‹œ í•™ìƒë“¤ì„ ìœ„í•œ AI ê¸°ë°˜ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ í”Œëž«í¼</p>
+                <p class="footer-text lang-ko" style="display:none;">구미시 학생들을 위한 AI 기반 스마트 학습 플랫폼</p>
             </div>
             <div class="footer-bottom">
                 <p class="lang-en">&copy; 2024 Gumi Smart Learning Support Service. All rights reserved.</p>
-                <p class="lang-ko" style="display:none;">&copy; 2024 êµ¬ë¯¸ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ ì§€ì› ì„œë¹„ìŠ¤. ëª¨ë“  ê¶Œë¦¬ ë³´ìœ .</p>
+                <p class="lang-ko" style="display:none;">&copy; 2024 구미 스마트 학습 지원 서비스. 모든 권리 보유.</p>
             </div>
         </div>
     </footer>
 
     <script src="js/api-loader.js"></script>
-<script src="js/ui-fixes.js"></script>
-<script src="js/quiz-fix.js"></script>
-<script src="js/main.js"></script>
-<script src="js/language.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/chatbot.js"></script>
-<script src="js/quiz.js"></script>
+    <script src="js/ui-fixes.js"></script>
+    <script src="js/quiz-fix.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/ai-course-modules.js"></script>
 </body>
 </html>
-
-

@@ -28,10 +28,11 @@
                 <li><a href="index.html" class="nav-link lang-en">Home</a><a href="index.html" class="nav-link lang-ko" style="display:none;">홈</a></li>
                 <li><a href="subjects.html" class="nav-link lang-en">Subjects</a><a href="subjects.html" class="nav-link lang-ko" style="display:none;">과목</a></li>
                 <li><a href="ai-course.html" class="nav-link lang-en">AI Course</a><a href="ai-course.html" class="nav-link lang-ko" style="display:none;">AI 코스</a></li>
-               <li>
-    <a href="#" class="nav-link quiz-generator-btn lang-en" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">Quiz Generator</a>
-    <a href="#" class="nav-link quiz-generator-btn lang-ko" style="display:none;" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">퀴즈 생성기</a>
-</li>
+                <li><a href="question-bank.html" class="nav-link lang-en">Question Bank</a><a href="question-bank.html" class="nav-link lang-ko" style="display:none;">문제 은행</a></li>
+                <li>
+                    <a href="#" class="nav-link quiz-generator-btn lang-en" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">Quiz Generator</a>
+                    <a href="#" class="nav-link quiz-generator-btn lang-ko" style="display:none;" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">퀴즈 생성기</a>
+                </li>
                 <li><a href="dashboard.html" class="nav-link lang-en">Dashboard</a><a href="dashboard.html" class="nav-link lang-ko" style="display:none;">대시보드</a></li>
                 <li><a href="profile.html" class="nav-link active lang-en">Profile</a><a href="profile.html" class="nav-link active lang-ko" style="display:none;">프로필</a></li>
                 <li><button onclick="logout()" class="btn btn-outline lang-en">Logout</button><button onclick="logout()" class="btn btn-outline lang-ko" style="display:none;">로그아웃</button></li>
@@ -44,139 +45,121 @@
         </div>
     </nav>
 
-    <section class="profile-container">
+    <!-- Main Content -->
+    <section class="features">
         <div class="container">
-            <div class="profile-header">
-                <div class="profile-avatar">
-                    <i class="fas fa-user-graduate"></i>
+            <div class="dashboard-header">
+                <div class="welcome-message">
+                    <h1 class="lang-en">My Profile</h1>
+                    <h1 class="lang-ko" style="display:none;">내 프로필</h1>
+                    <p class="lang-en">Manage your account and learning preferences</p>
+                    <p class="lang-ko" style="display:none;">계정 및 학습 환경 설정 관리</p>
                 </div>
-                <div class="profile-info">
-                    <h1 id="profileName">Student Name</h1>
-                    <p id="profileEmail">student@email.com</p>
-                    <p id="profileType">General Student</p>
-                </div>
+                <button class="btn btn-primary" onclick="editProfile()">
+                    <i class="fas fa-edit"></i>
+                    <span class="lang-en">Edit Profile</span>
+                    <span class="lang-ko" style="display:none;">프로필 편집</span>
+                </button>
             </div>
-            
-            <div class="settings-grid">
-                <div class="setting-card">
-                    <h3 class="lang-en">Personal Information</h3>
-                    <h3 class="lang-ko" style="display:none;">개인 정보</h3>
-                    <form id="profileForm">
-                        <div class="form-group">
-                            <label for="name" class="lang-en">Full Name</label>
-                            <label for="name" class="lang-ko" style="display:none;">전체 이름</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email" class="lang-en">Email Address</label>
-                            <label for="email" class="lang-ko" style="display:none;">이메일 주소</label>
-                            <input type="email" id="email" class="form-control" required readonly>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="studentType" class="lang-en">Student Type</label>
-                            <label for="studentType" class="lang-ko" style="display:none;">학생 유형</label>
-                            <select id="studentType" class="form-select" required>
-                                <option value="general">
-                                    <span class="lang-en">General Student</span>
-                                    <span class="lang-ko" style="display:none;">일반 학생</span>
-                                </option>
-                                <option value="advanced">
-                                    <span class="lang-en">Advanced Student</span>
-                                    <span class="lang-ko" style="display:none;">고급 학생</span>
-                                </option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="language" class="lang-en">Preferred Language</label>
-                            <label for="language" class="lang-ko" style="display:none;">선호 언어</label>
-                            <select id="language" class="form-select" required>
-                                <option value="en">English</option>
-                                <option value="ko">한국어</option>
-                            </select>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">
-                            <span class="lang-en">Save Changes</span>
-                            <span class="lang-ko" style="display:none;">변경사항 저장</span>
-                        </button>
-                    </form>
+
+            <!-- Profile Info -->
+            <div class="profile-container" style="max-width: 800px; margin: 0 auto;">
+                <div class="profile-header" style="text-align: center; margin-bottom: 40px;">
+                    <div class="profile-avatar" style="width: 120px; height: 120px; border-radius: 60px; background: linear-gradient(135deg, #4361ee 0%, #3f37c9 100%); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user-graduate" style="font-size: 60px; color: white;"></i>
+                    </div>
+                    <h2 id="profileName">Student Name</h2>
+                    <p id="profileEmail" style="color: #666;">student@example.com</p>
                 </div>
-                
-                <div class="setting-card">
-                    <h3 class="lang-en">Change Password</h3>
-                    <h3 class="lang-ko" style="display:none;">비밀번호 변경</h3>
-                    <form id="passwordForm">
-                        <div class="form-group">
-                            <label for="currentPassword" class="lang-en">Current Password</label>
-                            <label for="currentPassword" class="lang-ko" style="display:none;">현재 비밀번호</label>
-                            <input type="password" id="currentPassword" class="form-control">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="newPassword" class="lang-en">New Password</label>
-                            <label for="newPassword" class="lang-ko" style="display:none;">새 비밀번호</label>
-                            <input type="password" id="newPassword" class="form-control">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="confirmNewPassword" class="lang-en">Confirm New Password</label>
-                            <label for="confirmNewPassword" class="lang-ko" style="display:none;">새 비밀번호 확인</label>
-                            <input type="password" id="confirmNewPassword" class="form-control">
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">
-                            <span class="lang-en">Update Password</span>
-                            <span class="lang-ko" style="display:none;">비밀번호 업데이트</span>
-                        </button>
-                    </form>
-                </div>
-                
-                <div class="setting-card">
-                    <h3 class="lang-en">Learning Statistics</h3>
-                    <h3 class="lang-ko" style="display:none;">학습 통계</h3>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-number" id="statModules">0/7</div>
-                            <div class="stat-label lang-en">AI Modules</div>
-                            <div class="stat-label lang-ko" style="display:none;">AI 모듈</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" id="statSubjects">0</div>
-                            <div class="stat-label lang-en">Subjects</div>
-                            <div class="stat-label lang-ko" style="display:none;">과목</div>
+
+                <div class="profile-details" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <h3 class="lang-en" style="margin-bottom: 20px;">Personal Information</h3>
+                    <h3 class="lang-ko" style="display:none; margin-bottom: 20px;">개인 정보</h3>
+                    
+                    <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #f0f0f0;">
+                        <label style="font-weight: 600; color: #666; display: block; margin-bottom: 5px;" class="lang-en">Full Name</label>
+                        <label style="font-weight: 600; color: #666; display: block; margin-bottom: 5px;" class="lang-ko" style="display:none;">전체 이름</label>
+                        <p id="displayFullName" style="font-size: 1.1rem;">John Doe</p>
+                    </div>
+
+                    <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #f0f0f0;">
+                        <label style="font-weight: 600; color: #666; display: block; margin-bottom: 5px;" class="lang-en">Email Address</label>
+                        <label style="font-weight: 600; color: #666; display: block; margin-bottom: 5px;" class="lang-ko" style="display:none;">이메일 주소</label>
+                        <p id="displayEmail" style="font-size: 1.1rem;">john.doe@example.com</p>
+                    </div>
+
+                    <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #f0f0f0;">
+                        <label style="font-weight: 600; color: #666; display: block; margin-bottom: 5px;" class="lang-en">Preferred Subjects</label>
+                        <label style="font-weight: 600; color: #666; display: block; margin-bottom: 5px;" class="lang-ko" style="display:none;">선호 과목</label>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <span style="background: #4361ee20; color: #4361ee; padding: 5px 15px; border-radius: 20px;">Mathematics</span>
+                            <span style="background: #f7258520; color: #f72585; padding: 5px 15px; border-radius: 20px;">English</span>
+                            <span style="background: #4cc9f020; color: #4cc9f0; padding: 5px 15px; border-radius: 20px;">Science</span>
                         </div>
                     </div>
-                    <p style="margin-top: 20px; color: var(--gray-color);">
-                        <span class="lang-en">Member since: </span>
-                        <span class="lang-ko" style="display:none;">회원 가입일: </span>
-                        <span id="memberSince">2024</span>
-                    </p>
-                </div>
-                
-                <div class="setting-card">
-                    <h3 class="lang-en">Account Actions</h3>
-                    <h3 class="lang-ko" style="display:none;">계정 작업</h3>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <button onclick="exportData()" class="btn btn-outline">
-                            <span class="lang-en">Export Learning Data</span>
-                            <span class="lang-ko" style="display:none;">학습 데이터 내보내기</span>
-                        </button>
-                        <button onclick="clearHistory()" class="btn btn-outline">
-                            <span class="lang-en">Clear Learning History</span>
-                            <span class="lang-ko" style="display:none;">학습 기록 지우기</span>
-                        </button>
-                        <button onclick="deleteAccount()" class="btn" style="background: var(--danger-color); color: white;">
-                            <span class="lang-en">Delete Account</span>
-                            <span class="lang-ko" style="display:none;">계정 삭제</span>
-                        </button>
+
+                    <div>
+                        <label style="font-weight: 600; color: #666; display: block; margin-bottom: 5px;" class="lang-en">Learning Goal</label>
+                        <label style="font-weight: 600; color: #666; display: block; margin-bottom: 5px;" class="lang-ko" style="display:none;">학습 목표</label>
+                        <p>Prepare for university entrance exams</p>
                     </div>
+                </div>
+
+                <!-- Account Settings -->
+                <div style="margin-top: 40px; background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <h3 class="lang-en" style="margin-bottom: 20px;">Account Settings</h3>
+                    <h3 class="lang-ko" style="display:none; margin-bottom: 20px;">계정 설정</h3>
+                    
+                    <button class="btn btn-outline" style="width: 100%; margin-bottom: 10px; text-align: left; justify-content: flex-start;" onclick="changePassword()">
+                        <i class="fas fa-key" style="margin-right: 10px;"></i>
+                        <span class="lang-en">Change Password</span>
+                        <span class="lang-ko" style="display:none;">비밀번호 변경</span>
+                    </button>
+                    
+                    <button class="btn btn-outline" style="width: 100%; margin-bottom: 10px; text-align: left; justify-content: flex-start;" onclick="notificationSettings()">
+                        <i class="fas fa-bell" style="margin-right: 10px;"></i>
+                        <span class="lang-en">Notification Settings</span>
+                        <span class="lang-ko" style="display:none;">알림 설정</span>
+                    </button>
+                    
+                    <button class="btn btn-outline" style="width: 100%; text-align: left; justify-content: flex-start; color: #f72585;" onclick="deleteAccount()">
+                        <i class="fas fa-trash" style="margin-right: 10px;"></i>
+                        <span class="lang-en">Delete Account</span>
+                        <span class="lang-ko" style="display:none;">계정 삭제</span>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- AI Chatbot Widget -->
+    <div class="chatbot-widget">
+        <div class="chatbot-header">
+            <i class="fas fa-robot"></i>
+            <span class="lang-en">AI Learning Assistant</span>
+            <span class="lang-ko" style="display:none;">AI 학습 도우미</span>
+            <button class="close-chatbot"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chatbot-body">
+            <div class="chat-messages">
+                <div class="message ai">
+                    <div class="message-content lang-en">
+                        Need help with your profile settings? I'm here to assist!
+                    </div>
+                    <div class="message-content lang-ko" style="display:none;">
+                        프로필 설정에 도움이 필요하신가요? 도와드리겠습니다!
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your question...">
+                <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="chatbot-toggle">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -197,98 +180,32 @@
         </div>
     </footer>
 
+    <script src="js/api-loader.js"></script>
+    <script src="js/ui-fixes.js"></script>
+    <script src="js/quiz-fix.js"></script>
     <script src="js/main.js"></script>
     <script src="js/language.js"></script>
     <script src="js/auth.js"></script>
-    
+    <script src="js/chatbot.js"></script>
+    <script src="js/quiz.js"></script>
     <script>
-        // Profile page specific functions
-        function exportData() {
-            const user = JSON.parse(localStorage.getItem('currentUser'));
-            const dataStr = JSON.stringify(user, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `gumi-learning-data-${user.name}.json`;
-            link.click();
-            
-            alert(document.querySelector('.lang-en') ? 
-                'Data exported successfully!' : '데이터가 성공적으로 내보내졌습니다!');
+        function editProfile() {
+            alert('Edit profile feature coming soon!');
         }
         
-        function clearHistory() {
-            if (confirm(document.querySelector('.lang-en') ? 
-                'Are you sure you want to clear all learning history?' : 
-                '모든 학습 기록을 지우시겠습니까?')) {
-                const user = JSON.parse(localStorage.getItem('currentUser'));
-                if (user) {
-                    user.completedModules = [];
-                    user.learningProgress = {};
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    
-                    // Update in users array
-                    const users = JSON.parse(localStorage.getItem('users')) || [];
-                    const userIndex = users.findIndex(u => u.id === user.id);
-                    if (userIndex !== -1) {
-                        users[userIndex] = user;
-                        localStorage.setItem('users', JSON.stringify(users));
-                    }
-                    
-                    alert(document.querySelector('.lang-en') ? 
-                        'Learning history cleared!' : '학습 기록이 지워졌습니다!');
-                    location.reload();
-                }
-            }
+        function changePassword() {
+            alert('Change password feature coming soon!');
+        }
+        
+        function notificationSettings() {
+            alert('Notification settings feature coming soon!');
         }
         
         function deleteAccount() {
-            if (confirm(document.querySelector('.lang-en') ? 
-                'Are you sure you want to delete your account? This action cannot be undone.' :
-                '계정을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
-                const user = JSON.parse(localStorage.getItem('currentUser'));
-                if (user) {
-                    // Remove from users array
-                    const users = JSON.parse(localStorage.getItem('users')) || [];
-                    const updatedUsers = users.filter(u => u.id !== user.id);
-                    localStorage.setItem('users', JSON.stringify(updatedUsers));
-                    
-                    // Remove current user
-                    localStorage.removeItem('currentUser');
-                    localStorage.removeItem('currentSession');
-                    
-                    alert(document.querySelector('.lang-en') ? 
-                        'Account deleted successfully. Redirecting to home page...' :
-                        '계정이 성공적으로 삭제되었습니다. 홈페이지로 이동합니다...');
-                    
-                    setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 1000);
-                }
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                alert('Account deletion feature coming soon!');
             }
         }
-        
-        // Initialize profile data
-        document.addEventListener('DOMContentLoaded', () => {
-            const user = JSON.parse(localStorage.getItem('currentUser'));
-            if (user) {
-                // Update statistics
-                document.getElementById('statModules').textContent = 
-                    `${user.completedModules?.length || 0}/7`;
-                document.getElementById('statSubjects').textContent = 
-                    Object.keys(user.learningProgress || {}).length;
-                document.getElementById('memberSince').textContent = 
-                    new Date(user.createdAt).toLocaleDateString();
-            }
-        });
     </script>
-        <script src="js/api-loader.js"></script>
-<script src="js/ui-fixes.js"></script>
-<script src="js/quiz-fix.js"></script>
-<script src="js/main.js"></script>
-<script src="js/language.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/chatbot.js"></script>
-<script src="js/quiz.js"></script>
 </body>
 </html>

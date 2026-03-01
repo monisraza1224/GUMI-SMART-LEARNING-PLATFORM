@@ -13,7 +13,7 @@
     <!-- Language Toggle -->
     <div class="language-toggle">
         <button class="lang-btn active" data-lang="en">English</button>
-        <button class="lang-btn" data-lang="ko">í•œêµ­ì–´</button>
+        <button class="lang-btn" data-lang="ko">한국어</button>
     </div>
 
     <!-- Navigation -->
@@ -22,19 +22,20 @@
             <div class="logo">
                 <i class="fas fa-brain"></i>
                 <span class="lang-en">Gumi Smart Learning</span>
-                <span class="lang-ko" style="display:none;">êµ¬ë¯¸ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ</span>
+                <span class="lang-ko" style="display:none;">구미 스마트 학습</span>
             </div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link lang-en">Home</a><a href="index.html" class="nav-link lang-ko" style="display:none;">í™ˆ</a></li>
-                <li><a href="subjects.html" class="nav-link active lang-en">Subjects</a><a href="subjects.html" class="nav-link active lang-ko" style="display:none;">ê³¼ëª©</a></li>
-                <li><a href="ai-course.html" class="nav-link lang-en">AI Course</a><a href="ai-course.html" class="nav-link lang-ko" style="display:none;">AI ì½”ìŠ¤</a></li>
-               <li>
-    <a href="#" class="nav-link quiz-generator-btn lang-en" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">Quiz Generator</a>
-    <a href="#" class="nav-link quiz-generator-btn lang-ko" style="display:none;" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">퀴즈 생성기</a>
-</li>
-                <li><a href="dashboard.html" class="nav-link lang-en">Dashboard</a><a href="dashboard.html" class="nav-link lang-ko" style="display:none;">ëŒ€ì‹œë³´ë“œ</a></li>
-                <li><a href="profile.html" class="nav-link lang-en">Profile</a><a href="profile.html" class="nav-link lang-ko" style="display:none;">í”„ë¡œí•„</a></li>
-                <li><button onclick="logout()" class="btn btn-outline lang-en">Logout</button><button onclick="logout()" class="btn btn-outline lang-ko" style="display:none;">ë¡œê·¸ì•„ì›ƒ</button></li>
+                <li><a href="index.html" class="nav-link lang-en">Home</a><a href="index.html" class="nav-link lang-ko" style="display:none;">홈</a></li>
+                <li><a href="subjects.html" class="nav-link active lang-en">Subjects</a><a href="subjects.html" class="nav-link active lang-ko" style="display:none;">과목</a></li>
+                <li><a href="ai-course.html" class="nav-link lang-en">AI Course</a><a href="ai-course.html" class="nav-link lang-ko" style="display:none;">AI 코스</a></li>
+                <li><a href="question-bank.html" class="nav-link lang-en">Question Bank</a><a href="question-bank.html" class="nav-link lang-ko" style="display:none;">문제 은행</a></li>
+                <li>
+                    <a href="#" class="nav-link quiz-generator-btn lang-en" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">Quiz Generator</a>
+                    <a href="#" class="nav-link quiz-generator-btn lang-ko" style="display:none;" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">퀴즈 생성기</a>
+                </li>
+                <li><a href="dashboard.html" class="nav-link lang-en">Dashboard</a><a href="dashboard.html" class="nav-link lang-ko" style="display:none;">대시보드</a></li>
+                <li><a href="profile.html" class="nav-link lang-en">Profile</a><a href="profile.html" class="nav-link lang-ko" style="display:none;">프로필</a></li>
+                <li><button onclick="logout()" class="btn btn-outline lang-en">Logout</button><button onclick="logout()" class="btn btn-outline lang-ko" style="display:none;">로그아웃</button></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -44,55 +45,130 @@
         </div>
     </nav>
 
+    <!-- Main Content -->
     <section class="features">
         <div class="container">
             <div class="dashboard-header">
                 <div class="welcome-message">
                     <h1 class="lang-en">Learning Subjects</h1>
-                    <h1 class="lang-ko" style="display:none;">í•™ìŠµ ê³¼ëª©</h1>
-                    <p class="lang-en">Choose your subject and difficulty level to start learning</p>
-                    <p class="lang-ko" style="display:none;">ê³¼ëª©ê³¼ ë‚œì´ë„ë¥¼ ì„ íƒí•˜ì—¬ í•™ìŠµì„ ì‹œìž‘í•˜ì„¸ìš”</p>
+                    <h1 class="lang-ko" style="display:none;">학습 과목</h1>
+                    <p class="lang-en">Choose a subject to start learning with AI assistance</p>
+                    <p class="lang-ko" style="display:none;">AI 도움으로 학습을 시작할 과목을 선택하세요</p>
                 </div>
-                <a href="dashboard.html" class="btn btn-outline lang-en">Back to Dashboard</a>
-                <a href="dashboard.html" class="btn btn-outline lang-ko" style="display:none;">ëŒ€ì‹œë³´ë“œë¡œ ëŒì•„ê°€ê¸°</a>
             </div>
-            
-            <div class="subjects-grid" id="subjectsContainer">
-                <!-- Subjects will be loaded by JavaScript -->
-            </div>
-            
-            <div style="margin-top: 60px; text-align: center;">
-                <h2 class="section-title lang-en">How to Use the Subjects</h2>
-                <h2 class="section-title lang-ko" style="display:none;">ê³¼ëª© ì‚¬ìš© ë°©ë²•</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-mouse-pointer"></i>
-                        </div>
-                        <h3 class="lang-en">1. Select Subject</h3>
-                        <h3 class="lang-ko" style="display:none;">1. ê³¼ëª© ì„ íƒ</h3>
-                        <p class="lang-en">Choose from six major subjects</p>
-                        <p class="lang-ko" style="display:none;">6ëŒ€ ì£¼ìš” ê³¼ëª© ì¤‘ ì„ íƒí•˜ì„¸ìš”</p>
+
+            <div class="subjects-grid">
+                <!-- Korean -->
+                <div class="subject-card" onclick="location.href='ai-course.html?subject=korean'">
+                    <div class="subject-icon" style="background: #4361ee20; color: #4361ee;">
+                        <i class="fas fa-language"></i>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-signal"></i>
-                        </div>
-                        <h3 class="lang-en">2. Choose Difficulty</h3>
-                        <h3 class="lang-ko" style="display:none;">2. ë‚œì´ë„ ì„ íƒ</h3>
-                        <p class="lang-en">Select High, Medium, or Low difficulty</p>
-                        <p class="lang-ko" style="display:none;">ê³ ê¸‰, ì¤‘ê¸‰, ì´ˆê¸‰ ë‚œì´ë„ ì¤‘ ì„ íƒí•˜ì„¸ìš”</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h3 class="lang-en">3. Start Learning</h3>
-                        <h3 class="lang-ko" style="display:none;">3. í•™ìŠµ ì‹œìž‘</h3>
-                        <p class="lang-en">AI assistant will guide you through lessons</p>
-                        <p class="lang-ko" style="display:none;">AI ë„ìš°ë¯¸ê°€ ìˆ˜ì—…ì„ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤</p>
+                    <h2 class="lang-en">Korean</h2>
+                    <h2 class="lang-ko" style="display:none;">국어</h2>
+                    <p class="lang-en">Grammar, Literature, Writing</p>
+                    <p class="lang-ko" style="display:none;">문법, 문학, 작문</p>
+                    <div class="difficulty-tags">
+                        <span class="difficulty-tag beginner">Beginner</span>
+                        <span class="difficulty-tag intermediate">Intermediate</span>
+                        <span class="difficulty-tag advanced">Advanced</span>
                     </div>
                 </div>
+
+                <!-- Math -->
+                <div class="subject-card" onclick="location.href='ai-course.html?subject=math'">
+                    <div class="subject-icon" style="background: #f7258520; color: #f72585;">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h2 class="lang-en">Mathematics</h2>
+                    <h2 class="lang-ko" style="display:none;">수학</h2>
+                    <p class="lang-en">Algebra, Geometry, Calculus</p>
+                    <p class="lang-ko" style="display:none;">대수학, 기하학, 미적분</p>
+                    <div class="difficulty-tags">
+                        <span class="difficulty-tag beginner">Beginner</span>
+                        <span class="difficulty-tag intermediate">Intermediate</span>
+                        <span class="difficulty-tag advanced">Advanced</span>
+                    </div>
+                </div>
+
+                <!-- English -->
+                <div class="subject-card" onclick="location.href='ai-course.html?subject=english'">
+                    <div class="subject-icon" style="background: #4cc9f020; color: #4cc9f0;">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h2 class="lang-en">English</h2>
+                    <h2 class="lang-ko" style="display:none;">영어</h2>
+                    <p class="lang-en">Grammar, Vocabulary, Reading</p>
+                    <p class="lang-ko" style="display:none;">문법, 어휘, 읽기</p>
+                    <div class="difficulty-tags">
+                        <span class="difficulty-tag beginner">Beginner</span>
+                        <span class="difficulty-tag intermediate">Intermediate</span>
+                        <span class="difficulty-tag advanced">Advanced</span>
+                    </div>
+                </div>
+
+                <!-- Social Studies -->
+                <div class="subject-card" onclick="location.href='ai-course.html?subject=social'">
+                    <div class="subject-icon" style="background: #ff9e0020; color: #ff9e00;">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h2 class="lang-en">Social Studies</h2>
+                    <h2 class="lang-ko" style="display:none;">사회</h2>
+                    <p class="lang-en">Geography, Economics, Politics</p>
+                    <p class="lang-ko" style="display:none;">지리, 경제, 정치</p>
+                    <div class="difficulty-tags">
+                        <span class="difficulty-tag beginner">Beginner</span>
+                        <span class="difficulty-tag intermediate">Intermediate</span>
+                        <span class="difficulty-tag advanced">Advanced</span>
+                    </div>
+                </div>
+
+                <!-- Science -->
+                <div class="subject-card" onclick="location.href='ai-course.html?subject=science'">
+                    <div class="subject-icon" style="background: #00bbf920; color: #00bbf9;">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h2 class="lang-en">Science</h2>
+                    <h2 class="lang-ko" style="display:none;">과학</h2>
+                    <p class="lang-en">Physics, Chemistry, Biology</p>
+                    <p class="lang-ko" style="display:none;">물리학, 화학, 생물학</p>
+                    <div class="difficulty-tags">
+                        <span class="difficulty-tag beginner">Beginner</span>
+                        <span class="difficulty-tag intermediate">Intermediate</span>
+                        <span class="difficulty-tag advanced">Advanced</span>
+                    </div>
+                </div>
+
+                <!-- Korean History -->
+                <div class="subject-card" onclick="location.href='ai-course.html?subject=history'">
+                    <div class="subject-icon" style="background: #9b5de520; color: #9b5de5;">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h2 class="lang-en">Korean History</h2>
+                    <h2 class="lang-ko" style="display:none;">한국사</h2>
+                    <p class="lang-en">Ancient, Medieval, Modern</p>
+                    <p class="lang-ko" style="display:none;">고대, 중세, 근현대</p>
+                    <div class="difficulty-tags">
+                        <span class="difficulty-tag beginner">Beginner</span>
+                        <span class="difficulty-tag intermediate">Intermediate</span>
+                        <span class="difficulty-tag advanced">Advanced</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Recommendation -->
+            <div class="feature-card" style="margin-top: 60px; text-align: center;">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #4361ee 0%, #3f37c9 100%);">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3 class="lang-en">Need help choosing?</h3>
+                <h3 class="lang-ko" style="display:none;">선택에 도움이 필요하신가요?</h3>
+                <p class="lang-en">Our AI assistant can recommend the best subject based on your goals</p>
+                <p class="lang-ko" style="display:none;">AI 도우미가 목표에 따라 최적의 과목을 추천해 드립니다</p>
+                <button class="btn btn-primary try-chatbot-btn" style="margin-top: 20px;">
+                    <i class="fas fa-comment-dots"></i>
+                    <span class="lang-en">Ask AI Assistant</span>
+                    <span class="lang-ko" style="display:none;">AI 도우미에게 물어보기</span>
+                </button>
             </div>
         </div>
     </section>
@@ -102,17 +178,17 @@
         <div class="chatbot-header">
             <i class="fas fa-robot"></i>
             <span class="lang-en">AI Learning Assistant</span>
-            <span class="lang-ko" style="display:none;">AI í•™ìŠµ ë„ìš°ë¯¸</span>
+            <span class="lang-ko" style="display:none;">AI 학습 도우미</span>
             <button class="close-chatbot"><i class="fas fa-times"></i></button>
         </div>
         <div class="chatbot-body">
             <div class="chat-messages">
                 <div class="message ai">
                     <div class="message-content lang-en">
-                        I can help you with any subject! Which one would you like to learn?
+                        Hi! I can help you choose the right subject. What are you interested in learning?
                     </div>
                     <div class="message-content lang-ko" style="display:none;">
-                        ì–´ë–¤ ê³¼ëª©ì´ë“  ë„ì™€ë“œë¦´ ìˆ˜ ìžˆìŠµë‹ˆë‹¤! ì–´ë–¤ ê³¼ëª©ì„ ë°°ìš°ê³  ì‹¶ìœ¼ì‹ ê°€ìš”?
+                        안녕하세요! 적합한 과목 선택을 도와드릴게요. 어떤 분야에 관심이 있으신가요?
                     </div>
                 </div>
             </div>
@@ -133,27 +209,25 @@
                 <div class="footer-logo">
                     <i class="fas fa-brain"></i>
                     <span class="lang-en">Gumi Smart Learning</span>
-                    <span class="lang-ko" style="display:none;">êµ¬ë¯¸ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ</span>
+                    <span class="lang-ko" style="display:none;">구미 스마트 학습</span>
                 </div>
                 <p class="footer-text lang-en">AI-powered smart learning platform for students in Gumi City</p>
-                <p class="footer-text lang-ko" style="display:none;">êµ¬ë¯¸ì‹œ í•™ìƒë“¤ì„ ìœ„í•œ AI ê¸°ë°˜ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ í”Œëž«í¼</p>
+                <p class="footer-text lang-ko" style="display:none;">구미시 학생들을 위한 AI 기반 스마트 학습 플랫폼</p>
             </div>
             <div class="footer-bottom">
                 <p class="lang-en">&copy; 2024 Gumi Smart Learning Support Service. All rights reserved.</p>
-                <p class="lang-ko" style="display:none;">&copy; 2024 êµ¬ë¯¸ ìŠ¤ë§ˆíŠ¸ í•™ìŠµ ì§€ì› ì„œë¹„ìŠ¤. ëª¨ë“  ê¶Œë¦¬ ë³´ìœ .</p>
+                <p class="lang-ko" style="display:none;">&copy; 2024 구미 스마트 학습 지원 서비스. 모든 권리 보유.</p>
             </div>
         </div>
     </footer>
 
-      <script src="js/api-loader.js"></script>
-<script src="js/ui-fixes.js"></script>
-<script src="js/quiz-fix.js"></script>
-<script src="js/main.js"></script>
-<script src="js/language.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/chatbot.js"></script>
-<script src="js/quiz.js"></script>
+    <script src="js/api-loader.js"></script>
+    <script src="js/ui-fixes.js"></script>
+    <script src="js/quiz-fix.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/quiz.js"></script>
 </body>
 </html>
-
-

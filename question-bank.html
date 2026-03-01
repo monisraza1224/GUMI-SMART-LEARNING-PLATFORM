@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Bank - Gumi Smart Learning</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/question-bank.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ko">한국어</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <span class="lang-en">Gumi Smart Learning</span>
+                <span class="lang-ko" style="display:none;">구미 스마트 학습</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link lang-en">Home</a><a href="index.html" class="nav-link lang-ko" style="display:none;">홈</a></li>
+                <li><a href="subjects.html" class="nav-link lang-en">Subjects</a><a href="subjects.html" class="nav-link lang-ko" style="display:none;">과목</a></li>
+                <li><a href="ai-course.html" class="nav-link lang-en">AI Course</a><a href="ai-course.html" class="nav-link lang-ko" style="display:none;">AI 코스</a></li>
+                <li><a href="question-bank.html" class="nav-link active lang-en">Question Bank</a><a href="question-bank.html" class="nav-link active lang-ko" style="display:none;">문제 은행</a></li>
+                <li>
+                    <a href="#" class="nav-link quiz-generator-btn lang-en" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">Quiz Generator</a>
+                    <a href="#" class="nav-link quiz-generator-btn lang-ko" style="display:none;" onclick="if(window.quizGenerator){window.quizGenerator.openQuizGenerator();} return false;">퀴즈 생성기</a>
+                </li>
+                <li><a href="dashboard.html" class="nav-link lang-en">Dashboard</a><a href="dashboard.html" class="nav-link lang-ko" style="display:none;">대시보드</a></li>
+                <li><a href="profile.html" class="nav-link lang-en">Profile</a><a href="profile.html" class="nav-link lang-ko" style="display:none;">프로필</a></li>
+                <li><button onclick="logout()" class="btn btn-outline lang-en">Logout</button><button onclick="logout()" class="btn btn-outline lang-ko" style="display:none;">로그아웃</button></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="features">
+        <div class="container">
+            <div class="dashboard-header">
+                <div class="welcome-message">
+                    <h1 class="lang-en">Question Bank</h1>
+                    <h1 class="lang-ko" style="display:none;">문제 은행</h1>
+                    <p class="lang-en">Access thousands of practice questions across all subjects</p>
+                    <p class="lang-ko" style="display:none;">모든 과목의 수천 개 연습 문제에 접근하세요</p>
+                </div>
+                <div>
+                    <button class="btn btn-primary" onclick="openAIAssistant()">
+                        <i class="fas fa-robot"></i> 
+                        <span class="lang-en">Ask AI Assistant</span>
+                        <span class="lang-ko" style="display:none;">AI 도우미에게 물어보기</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="loading-spinner" style="display: none;">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p class="lang-en">Loading questions...</p>
+                <p class="lang-ko" style="display:none;">문제 불러오는 중...</p>
+            </div>
+
+            <!-- Subject Cards -->
+            <div class="subject-grid" id="subjectGrid">
+                <!-- Subjects will be loaded by JavaScript -->
+            </div>
+
+            <!-- Question Papers List -->
+            <div class="papers-section" id="papersSection" style="display: none;">
+                <div class="papers-header">
+                    <button class="btn btn-outline go-back-btn" onclick="goBackToSubjects()">
+                        <i class="fas fa-arrow-left"></i> 
+                        <span class="lang-en">All Subjects</span>
+                        <span class="lang-ko" style="display:none;">모든 과목</span>
+                    </button>
+                    <h3 id="categoryTitle"></h3>
+                </div>
+                
+                <!-- Category Filter Buttons -->
+                <div class="category-filter" id="categoryButtons">
+                    <!-- Categories will be loaded dynamically -->
+                </div>
+                
+                <div class="paper-count" id="paperCount"></div>
+                
+                <div class="search-box" style="margin-bottom: 20px;">
+                    <input type="text" id="searchPapers" placeholder="Search questions..." onkeyup="searchPapers()">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <div class="papers-grid" id="papersGrid"></div>
+            </div>
+
+            <!-- AI Assistant Chat Panel -->
+            <div class="ai-assistant-panel" id="aiAssistantPanel" style="display: none;">
+                <div class="ai-assistant-header">
+                    <div>
+                        <i class="fas fa-robot"></i>
+                        <span class="lang-en">AI Learning Assistant</span>
+                        <span class="lang-ko" style="display:none;">AI 학습 도우미</span>
+                    </div>
+                    <button class="close-assistant" onclick="closeAIAssistant()">&times;</button>
+                </div>
+                <div class="ai-assistant-chat" id="assistantChat">
+                    <div class="message ai">
+                        <div class="message-content lang-en">
+                            Hi! I'm your AI Learning Assistant. I can help you with:
+                            <br><br>
+                            • Explaining concepts from any question<br>
+                            • Providing step-by-step solutions<br>
+                            • Offering similar practice problems<br>
+                            • Tips and strategies for difficult topics
+                            <br><br>
+                            What would you like help with today?
+                        </div>
+                        <div class="message-content lang-ko" style="display:none;">
+                            안녕하세요! AI 학습 도우미입니다. 다음을 도와드릴 수 있습니다:
+                            <br><br>
+                            • 문제 개념 설명<br>
+                            • 단계별 해설 제공<br>
+                            • 유사 연습 문제 추천<br>
+                            • 어려운 주제에 대한 팁과 전략
+                            <br><br>
+                            무엇을 도와드릴까요?
+                        </div>
+                    </div>
+                </div>
+                <div class="ai-assistant-input">
+                    <textarea id="assistantInput" placeholder="Type your question here..." rows="2"></textarea>
+                    <button onclick="sendAssistantMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF Preview Modal -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-modal-content">
+            <div class="pdf-modal-header">
+                <h3 id="pdfModalTitle">Question Paper</h3>
+                <button class="close-pdf-modal" onclick="closePDFModal()">&times;</button>
+            </div>
+            <iframe id="pdfViewer" class="pdf-viewer" src=""></iframe>
+        </div>
+    </div>
+
+    <!-- AI Chatbot Widget -->
+    <div class="chatbot-widget">
+        <div class="chatbot-header">
+            <i class="fas fa-robot"></i>
+            <span class="lang-en">AI Learning Assistant</span>
+            <span class="lang-ko" style="display:none;">AI 학습 도우미</span>
+            <button class="close-chatbot"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chatbot-body">
+            <div class="chat-messages">
+                <div class="message ai">
+                    <div class="message-content lang-en">
+                        I'm here to help with your questions! Need any guidance?
+                    </div>
+                    <div class="message-content lang-ko" style="display:none;">
+                        질문에 대해 도와드릴게요! 도움이 필요하신가요?
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your question...">
+                <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="chatbot-toggle">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span class="lang-en">Gumi Smart Learning</span>
+                    <span class="lang-ko" style="display:none;">구미 스마트 학습</span>
+                </div>
+                <p class="footer-text lang-en">AI-powered smart learning platform for students in Gumi City</p>
+                <p class="footer-text lang-ko" style="display:none;">구미시 학생들을 위한 AI 기반 스마트 학습 플랫폼</p>
+            </div>
+            <div class="footer-bottom">
+                <p class="lang-en">&copy; 2024 Gumi Smart Learning Support Service. All rights reserved.</p>
+                <p class="lang-ko" style="display:none;">&copy; 2024 구미 스마트 학습 지원 서비스. 모든 권리 보유.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api-loader.js"></script>
+    <script src="js/ui-fixes.js"></script>
+    <script src="js/quiz-fix.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/question-bank.js"></script>
+</body>
+</html>
