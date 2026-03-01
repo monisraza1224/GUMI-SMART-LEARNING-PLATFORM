@@ -153,18 +153,22 @@ class QuizGenerator {
                 
                 <div class="form-group">
                     <label>${isKorean ? '문항 유형' : 'Question Types'}</label>
-                    <div style="display: flex; gap: 15px; margin-top: 10px;">
+                    <div style="display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap;">
                         <label style="display: flex; align-items: center; gap: 5px;">
                             <input type="checkbox" id="typeMcq" checked> 
                             ${isKorean ? '객관식' : 'MCQ'}
                         </label>
                         <label style="display: flex; align-items: center; gap: 5px;">
                             <input type="checkbox" id="typeShort"> 
-                            ${isKorean ? '단답형' : 'Short'}
+                            ${isKorean ? '단답형' : 'Short Answer'}
                         </label>
                         <label style="display: flex; align-items: center; gap: 5px;">
                             <input type="checkbox" id="typeEssay"> 
                             ${isKorean ? '서술형' : 'Essay'}
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" id="typeTrueFalse"> 
+                            ${isKorean ? '참/거짓' : 'True/False'}
                         </label>
                     </div>
                 </div>
@@ -184,12 +188,15 @@ class QuizGenerator {
                         <option value="5">5</option>
                         <option value="10" selected>10</option>
                         <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
                     <label>${isKorean ? '주제 (선택사항)' : 'Topic (Optional)'}</label>
-                    <input type="text" id="quizTopic" class="form-control" placeholder="${isKorean ? '예: 이차방정식' : 'e.g., Quadratic equations'}">
+                    <input type="text" id="quizTopic" class="form-control" placeholder="${isKorean ? '예: 이차방정식, 대명사 등' : 'e.g., Quadratic equations, Pronouns'}">
                 </div>
                 
                 <div class="quiz-buttons">
@@ -251,9 +258,10 @@ class QuizGenerator {
         
         // Get question types
         const types = [];
-        if (modalContent.querySelector('#typeMcq').checked) types.push('mcq');
-        if (modalContent.querySelector('#typeShort').checked) types.push('short');
-        if (modalContent.querySelector('#typeEssay').checked) types.push('essay');
+        if (modalContent.querySelector('#typeMcq')?.checked) types.push('multiple choice');
+        if (modalContent.querySelector('#typeShort')?.checked) types.push('short answer');
+        if (modalContent.querySelector('#typeEssay')?.checked) types.push('essay');
+        if (modalContent.querySelector('#typeTrueFalse')?.checked) types.push('true/false');
         
         if (!subject) {
             const isKorean = localStorage.getItem('preferredLanguage') === 'ko';
@@ -269,18 +277,10 @@ class QuizGenerator {
         
         // Check API key
         if (!this.apiKey) {
-            const isKorean = localStorage.getItem('preferredLanguage') === 'ko';
-            const apiKey = prompt(
-                isKorean ? 
-                    'OpenAI API 키를 입력해주세요:' :
-                    'Please enter your OpenAI API key:'
-            );
-            
-            if (apiKey && apiKey.trim()) {
-                this.apiKey = apiKey.trim();
-                localStorage.setItem('openai_api_key', this.apiKey);
-            } else {
-                alert(isKorean ? 'API 키가 필요합니다' : 'API key is required');
+            await this.loadAPIKey();
+            if (!this.apiKey) {
+                const isKorean = localStorage.getItem('preferredLanguage') === 'ko';
+                alert(isKorean ? 'API 키가 필요합니다. 관리자에게 문의하세요.' : 'API key is required. Please contact administrator.');
                 return;
             }
         }
@@ -309,14 +309,15 @@ class QuizGenerator {
         } catch (error) {
             console.error('Quiz generation error:', error);
             loadingDiv.innerHTML = `
-                <div style="color: var(--danger-color); text-align: center;">
-                    <i class="fas fa-exclamation-triangle"></i>
+                <div style="color: #f72585; text-align: center;">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 10px;"></i>
                     <p>${document.querySelector('.lang-en') ? 
                         'Failed to generate quiz. Please try again.' : 
                         '퀴즈 생성에 실패했습니다. 다시 시도해주세요.'}</p>
-                    <p style="font-size: 0.8rem;">Error: ${error.message}</p>
+                    <p style="font-size: 0.8rem; color: #666;">Error: ${error.message}</p>
                 </div>
             `;
+            formDiv.style.display = 'block';
         }
     }
 
@@ -338,12 +339,38 @@ class QuizGenerator {
             advanced: isKorean ? '고급' : 'Advanced'
         };
         
-        // Build a simple prompt
-        let prompt = `Create a quiz for ${subjectNames[subject]} at ${difficulty} level. `;
-        prompt += `Generate ${count} questions. `;
-        if (topic) prompt += `Topic: ${topic}. `;
-        prompt += `Include multiple choice, short answer, and essay questions. `;
-        prompt += `Format the response as clear text with numbered questions, answers, and explanations.`;
+        const typesText = types.join(', ');
+        
+        // Build a comprehensive prompt
+        let prompt = isKorean ?
+            `다음 조건에 맞는 퀴즈를 생성해주세요:
+            과목: ${subjectNames[subject]}
+            난이도: ${difficultyNames[difficulty]}
+            문제 수: ${count}개
+            문항 유형: ${typesText}
+            ${topic ? `주제: ${topic}` : ''}
+            
+            각 문제는 다음 형식으로 제공해주세요:
+            1. 문제
+            2. 보기 (객관식/참거짓인 경우)
+            3. 정답
+            4. 해설
+            
+            퀴즈 제목과 함께 깔끔하게 정리해주세요.` :
+            `Please generate a quiz with the following specifications:
+            Subject: ${subjectNames[subject]}
+            Difficulty: ${difficultyNames[difficulty]}
+            Number of questions: ${count}
+            Question types: ${typesText}
+            ${topic ? `Topic: ${topic}` : ''}
+            
+            For each question, provide:
+            1. The question
+            2. Options (for multiple choice/true-false)
+            3. The correct answer
+            4. Explanation
+            
+            Format it nicely with a title.`;
         
         console.log('Sending prompt to OpenAI:', prompt);
         
@@ -357,22 +384,23 @@ class QuizGenerator {
                 model: 'gpt-3.5-turbo',
                 messages: [{ role: 'user', content: prompt }],
                 temperature: 0.7,
-                max_tokens: 2000
+                max_tokens: 2500
             })
         });
         
         if (!response.ok) {
             const error = await response.json();
-            throw new Error(`API error: ${error.error?.message || response.statusText}`);
+            throw new Error(error.error?.message || response.statusText);
         }
         
         const data = await response.json();
         const content = data.choices[0].message.content.trim();
         
-        // Return simple object with text content
+        // Return object with text content
         return {
             subject: subjectNames[subject],
             difficulty: difficultyNames[difficulty],
+            count: count,
             topic: topic || (isKorean ? '일반' : 'General'),
             content: content
         };
@@ -382,26 +410,36 @@ class QuizGenerator {
         const isKorean = localStorage.getItem('preferredLanguage') === 'ko';
         
         let html = `
-            <div class="quiz-header" style="text-align: center; margin-bottom: 20px;">
-                <h3>${quizData.subject} ${isKorean ? '퀴즈' : 'Quiz'}</h3>
-                <p style="color: var(--gray-color); margin: 5px 0;">
-                    ${isKorean ? '난이도' : 'Difficulty'}: ${quizData.difficulty}
-                </p>
-                ${quizData.topic ? `<p style="color: var(--gray-color); margin: 5px 0;">
-                    ${isKorean ? '주제' : 'Topic'}: ${quizData.topic}
-                </p>` : ''}
+            <div class="quiz-header" style="text-align: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #4361ee;">
+                <h3 style="color: #4361ee; margin-bottom: 10px;">${quizData.subject} ${isKorean ? '퀴즈' : 'Quiz'}</h3>
+                <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <span style="background: #f0f0f0; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem;">
+                        ${isKorean ? '난이도' : 'Difficulty'}: ${quizData.difficulty}
+                    </span>
+                    <span style="background: #f0f0f0; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem;">
+                        ${isKorean ? '문제 수' : 'Questions'}: ${quizData.count}
+                    </span>
+                    ${quizData.topic ? `
+                    <span style="background: #f0f0f0; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem;">
+                        ${isKorean ? '주제' : 'Topic'}: ${quizData.topic}
+                    </span>
+                    ` : ''}
+                </div>
             </div>
             
-            <div class="quiz-content-text" style="white-space: pre-wrap; padding: 20px; background: #f9f9f9; border-radius: 8px; line-height: 1.6; font-size: 0.95rem;">
+            <div class="quiz-content-text" style="white-space: pre-wrap; padding: 20px; background: #f8f9fa; border-radius: 8px; line-height: 1.6; font-size: 0.95rem; border-left: 4px solid #4361ee;">
                 ${quizData.content}
             </div>
             
-            <div class="quiz-actions" style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
-                <button class="btn btn-primary" onclick="window.print()" style="margin-right: 10px;">
+            <div class="quiz-actions" style="display: flex; gap: 10px; justify-content: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
+                <button class="btn btn-primary" onclick="window.print()" style="min-width: 100px;">
                     <i class="fas fa-print"></i> ${isKorean ? '인쇄' : 'Print'}
                 </button>
-                <button class="btn btn-outline" onclick="location.reload()">
+                <button class="btn btn-outline" onclick="location.reload()" style="min-width: 100px;">
                     <i class="fas fa-redo"></i> ${isKorean ? '새 퀴즈' : 'New Quiz'}
+                </button>
+                <button class="btn btn-outline" onclick="this.closest('.quiz-modal').querySelector('.close-quiz-modal').click()" style="min-width: 100px;">
+                    <i class="fas fa-times"></i> ${isKorean ? '닫기' : 'Close'}
                 </button>
             </div>
         `;
@@ -435,7 +473,7 @@ class QuizGenerator {
                 
                 .quiz-modal-header h2 {
                     margin: 0;
-                    color: var(--dark-color);
+                    color: #2b2d42;
                     font-size: 1.3rem;
                 }
                 
@@ -449,7 +487,46 @@ class QuizGenerator {
                 }
                 
                 .close-quiz-modal:hover {
-                    color: var(--dark-color);
+                    color: #2b2d42;
+                }
+                
+                .form-group {
+                    margin-bottom: 15px;
+                }
+                
+                .form-group label {
+                    display: block;
+                    margin-bottom: 5px;
+                    font-weight: 600;
+                    color: #2b2d42;
+                }
+                
+                .form-select, .form-control {
+                    width: 100%;
+                    padding: 10px;
+                    border: 2px solid #e0e0e0;
+                    border-radius: 8px;
+                    font-size: 1rem;
+                    transition: all 0.3s ease;
+                }
+                
+                .form-select:focus, .form-control:focus {
+                    outline: none;
+                    border-color: #4361ee;
+                }
+                
+                .quiz-content-text p {
+                    margin: 10px 0;
+                }
+                
+                .quiz-content-text strong {
+                    color: #4361ee;
+                }
+                
+                @media print {
+                    .quiz-actions, .quiz-modal-header .close-quiz-modal {
+                        display: none;
+                    }
                 }
             `;
             document.head.appendChild(style);
