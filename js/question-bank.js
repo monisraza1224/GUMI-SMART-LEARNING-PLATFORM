@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     loadSubjects();
     loadSavedState();
+    window.questionBankApiKey = null; // Initialize API key storage
 });
 
 let currentSubject = null;
@@ -370,14 +371,33 @@ function closePDFModal() {
     viewer.src = '';
 }
 
+// ===== AI ASSISTANT FIXES =====
 // Open AI Assistant
 function openAIAssistant() {
     document.getElementById('aiAssistantPanel').style.display = 'flex';
+    // Load API key when opening
+    if (!window.questionBankApiKey) {
+        loadAPIKeyForAssistant();
+    }
 }
 
 // Close AI Assistant
 function closeAIAssistant() {
     document.getElementById('aiAssistantPanel').style.display = 'none';
+}
+
+// Load API key for assistant
+async function loadAPIKeyForAssistant() {
+    try {
+        const response = await fetch('/api/get-apikey');
+        if (response.ok) {
+            const data = await response.json();
+            window.questionBankApiKey = data.apiKey;
+            console.log('API key loaded for Question Bank AI');
+        }
+    } catch (error) {
+        console.log('Could not load API key');
+    }
 }
 
 // Ask AI about paper
@@ -397,7 +417,7 @@ function askAIAboutPaper(paperTitle, paperFile) {
 }
 
 // Send message to AI Assistant
-function sendAssistantMessage() {
+async function sendAssistantMessage() {
     const input = document.getElementById('assistantInput');
     const message = input.value.trim();
     
@@ -406,13 +426,86 @@ function sendAssistantMessage() {
     addMessageToChat('user', message);
     input.value = '';
     
-    setTimeout(() => {
-        const response = document.documentElement.lang === 'ko' ?
-            "이 문제에 대해 도와드리겠습니다. 구체적으로 어떤 부분이 어려우신가요?" :
-            "I'll help you with this question. What specific part would you like me to explain?";
+    // Show loading indicator
+    const loadingId = showAssistantLoading();
+    
+    try {
+        // Load API key if not loaded
+        if (!window.questionBankApiKey) {
+            await loadAPIKeyForAssistant();
+        }
         
+        if (!window.questionBankApiKey) {
+            throw new Error('API key not available');
+        }
+        
+        const response = await getAIResponseFromAPI(message);
+        removeAssistantLoading(loadingId);
         addMessageToChat('ai', response);
-    }, 1000);
+        
+    } catch (error) {
+        console.error('AI Assistant error:', error);
+        removeAssistantLoading(loadingId);
+        
+        const errorMsg = document.documentElement.lang === 'ko' ?
+            '죄송합니다. 오류가 발생했습니다. 다시 시도해주세요.' :
+            'Sorry, an error occurred. Please try again.';
+        addMessageToChat('ai', errorMsg);
+    }
+}
+
+// Get AI response from OpenAI
+async function getAIResponseFromAPI(userMessage) {
+    const isKorean = document.documentElement.lang === 'ko';
+    
+    const systemMessage = isKorean ?
+        '당신은 구미 스마트 학습의 AI 도우미입니다. 학생들의 질문에 친절하고 도움이 되게 답변해주세요. 한국어로 답변해주세요.' :
+        'You are an AI assistant for Gumi Smart Learning. Answer students questions kindly and helpfully. Answer in English.';
+    
+    const messages = [
+        { role: 'system', content: systemMessage },
+        { role: 'user', content: userMessage }
+    ];
+    
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${window.questionBankApiKey}`
+        },
+        body: JSON.stringify({
+            model: 'gpt-3.5-turbo',
+            messages: messages,
+            temperature: 0.7,
+            max_tokens: 800
+        })
+    });
+    
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error?.message || 'API error');
+    }
+    
+    const data = await response.json();
+    return data.choices[0].message.content.trim();
+}
+
+// Show loading in assistant
+function showAssistantLoading() {
+    const chat = document.getElementById('assistantChat');
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'message ai loading';
+    loadingDiv.id = 'assistant-loading-' + Date.now();
+    loadingDiv.innerHTML = '<div class="message-content"><i class="fas fa-spinner fa-spin"></i> Thinking...</div>';
+    chat.appendChild(loadingDiv);
+    chat.scrollTop = chat.scrollHeight;
+    return loadingDiv.id;
+}
+
+// Remove loading
+function removeAssistantLoading(id) {
+    const loading = document.getElementById(id);
+    if (loading) loading.remove();
 }
 
 // Add message to chat

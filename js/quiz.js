@@ -341,30 +341,31 @@ class QuizGenerator {
         
         const typesText = types.join(', ');
         
-        // Build a comprehensive prompt
+        // Build a comprehensive prompt that explicitly asks for all questions
         let prompt = isKorean ?
-            `다음 조건에 맞는 퀴즈를 생성해주세요:
+            `다음 조건에 맞는 ${count}개의 퀴즈 문제를 생성해주세요:
             과목: ${subjectNames[subject]}
             난이도: ${difficultyNames[difficulty]}
-            문제 수: ${count}개
+            문제 수: ${count}개 (반드시 ${count}개 모두 생성)
             문항 유형: ${typesText}
             ${topic ? `주제: ${topic}` : ''}
             
-            각 문제는 다음 형식으로 제공해주세요:
+            중요: 반드시 ${count}개의 문제를 모두 생성해주세요. 각 문제는 다음 형식으로 제공:
+            
             1. 문제
             2. 보기 (객관식/참거짓인 경우)
             3. 정답
             4. 해설
             
             퀴즈 제목과 함께 깔끔하게 정리해주세요.` :
-            `Please generate a quiz with the following specifications:
+            `Please generate a quiz with EXACTLY ${count} questions following these specifications:
             Subject: ${subjectNames[subject]}
             Difficulty: ${difficultyNames[difficulty]}
-            Number of questions: ${count}
+            Number of questions: ${count} (MUST generate all ${count} questions)
             Question types: ${typesText}
             ${topic ? `Topic: ${topic}` : ''}
             
-            For each question, provide:
+            IMPORTANT: You MUST generate all ${count} questions. For each question, provide:
             1. The question
             2. Options (for multiple choice/true-false)
             3. The correct answer
@@ -384,7 +385,7 @@ class QuizGenerator {
                 model: 'gpt-3.5-turbo',
                 messages: [{ role: 'user', content: prompt }],
                 temperature: 0.7,
-                max_tokens: 2500
+                max_tokens: 3000 // Increased token limit for more questions
             })
         });
         
@@ -396,11 +397,16 @@ class QuizGenerator {
         const data = await response.json();
         const content = data.choices[0].message.content.trim();
         
+        // Count the number of questions generated
+        const questionCount = (content.match(/\d+\./g) || []).length;
+        console.log(`Generated ${questionCount} questions`);
+        
         // Return object with text content
         return {
             subject: subjectNames[subject],
             difficulty: difficultyNames[difficulty],
             count: count,
+            actualCount: questionCount,
             topic: topic || (isKorean ? '일반' : 'General'),
             content: content
         };
@@ -408,6 +414,15 @@ class QuizGenerator {
 
     displayQuiz(quizData, container) {
         const isKorean = localStorage.getItem('preferredLanguage') === 'ko';
+        
+        // Show warning if not all questions were generated
+        const warningHtml = (quizData.actualCount && quizData.actualCount < quizData.count) ? 
+            `<div style="background: #fff3cd; color: #856404; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
+                <i class="fas fa-exclamation-triangle"></i> 
+                ${isKorean ? 
+                    `${quizData.actualCount}개만 생성되었습니다. 다시 시도해주세요.` : 
+                    `Only ${quizData.actualCount} questions generated. Please try again.`}
+            </div>` : '';
         
         let html = `
             <div class="quiz-header" style="text-align: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #4361ee;">
@@ -426,6 +441,8 @@ class QuizGenerator {
                     ` : ''}
                 </div>
             </div>
+            
+            ${warningHtml}
             
             <div class="quiz-content-text" style="white-space: pre-wrap; padding: 20px; background: #f8f9fa; border-radius: 8px; line-height: 1.6; font-size: 0.95rem; border-left: 4px solid #4361ee;">
                 ${quizData.content}
